@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Friends</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      font-family: 'Lato', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.4;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #f5f0e8;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeDown 1s ease forwards 0.3s;
+      text-shadow: 0 2px 30px rgba(255,240,200,0.15);
+    }
+
+    .title span {
+      font-style: italic;
+      color: #e8c97a;
+    }
+
+    @keyframes fadeDown {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Slideshow container */
+    .slideshow {
+      position: relative;
+      width: min(80vw, 480px);
+      height: min(80vw, 480px);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 30px 80px rgba(0,0,0,0.7),
+        0 0 60px rgba(232,201,122,0.05);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img,
+    .slide .gif-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #e8c97a, #f5eabc);
+      width: 0%;
+      transition: width linear;
+      z-index: 10;
+    }
+
+    /* Dot indicators */
+    .dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 1.5rem;
+      opacity: 0;
+      animation: fadeDown 1s ease forwards 0.6s;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      transition: background 0.4s, transform 0.4s;
+    }
+
+    .dot.active {
+      background: #e8c97a;
+      transform: scale(1.4);
+    }
+
+    /* The End screen */
+    .end-screen {
+      position: fixed;
+      inset: 0;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      z-index: 200;
+    }
+
+    .end-screen.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .end-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      color: #f5f0e8;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
+      letter-spacing: 0.04em;
+      text-shadow: 0 4px 40px rgba(232,201,122,0.25);
+    }
+
+    .end-screen.show .end-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .end-sub {
+      margin-top: 1rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 1.5s ease 1.2s;
+    }
+
+    .end-screen.show .end-sub {
+      opacity: 1;
+    }
+
+    /* decorative line under title */
+    .title-line {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e8c97a, transparent);
+      margin: 0 auto 2rem;
+      opacity: 0;
+      animation: fadeDown 1s ease forwards 0.5s;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="title">My <span>Friends</span></h1>
+  <div class="title-line"></div>
+
+  <div class="slideshow" id="slideshow">
+    <div class="slide active" data-duration="3000">
+      <img src="https://raw.githubusercontent.com/educommitscrimes/imnages/refs/heads/main/F55B459A-FED8-4587-9887-69166C62A4E3.jpeg" alt="Friend 1"/>
+    </div>
+    <div class="slide" data-duration="3000">
+      <img src="https://raw.githubusercontent.com/educommitscrimes/imnages/refs/heads/main/IMG_5922.jpeg" alt="Friend 2"/>
+    </div>
+    <div class="slide" data-duration="3000">
+      <img src="https://raw.githubusercontent.com/educommitscrimes/imnages/refs/heads/main/lp_image.jpeg" alt="Friend 3"/>
+    </div>
+    <div class="slide" data-duration="5000">
+      <img src="https://raw.githubusercontent.com/educommitscrimes/imnages/refs/heads/main/e228ce09-0c03-4c4a-a089-c57274ec9f68.webp.gif" alt="Friend 4 GIF"/>
+    </div>
+    <div class="slide" data-duration="3000">
+      <img src="https://raw.githubusercontent.com/educommitscrimes/imnages/refs/heads/main/IMG_5875.jpeg" alt="Friend 5"/>
+    </div>
+    <div class="slide" data-duration="3000">
+      <img src="https://raw.githubusercontent.com/educommitscrimes/imnages/refs/heads/main/IMG_5914.jpeg" alt="Friend 6"/>
+    </div>
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <!-- The End screen -->
+  <div class="end-screen" id="endScreen">
+    <div class="end-text">The End...</div>
+    <div class="end-sub">I dont have photos of abe :(</div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progressBar');
+    const dotsContainer = document.getElementById('dots');
+    const endScreen = document.getElementById('endScreen');
+
+    // Build dots (excluding "end" logic)
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dotsContainer.appendChild(dot);
+    });
+    const dots = document.querySelectorAll('.dot');
+
+    let current = 0;
+    let timer = null;
+    let progTimer = null;
+
+    function setProgress(duration) {
+      progressBar.style.transition = 'none';
+      progressBar.style.width = '0%';
+      // Force reflow
+      void progressBar.offsetWidth;
+      progressBar.style.transition = `width ${duration}ms linear`;
+      progressBar.style.width = '100%';
+    }
+
+    function showSlide(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      const duration = parseInt(slides[current].dataset.duration);
+      setProgress(duration);
+
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (current < slides.length - 1) {
+          showSlide(current + 1);
+        } else {
+          // Show end screen
+          progressBar.style.transition = 'none';
+          progressBar.style.width = '100%';
+          setTimeout(() => {
+            endScreen.classList.add('show');
+          }, 600);
+        }
+      }, duration);
+    }
+
+    // Start
+    const firstDuration = parseInt(slides[0].dataset.duration);
+    setProgress(firstDuration);
+    timer = setTimeout(() => showSlide(1), firstDuration);
+  </script>
+</body>
+</html>
