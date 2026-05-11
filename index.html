@@ -57,28 +57,33 @@
     .welcome-continue:hover{background:#1a7a37}
 
     /* PANIC OVERLAY — fake Google Classroom */
-    #panicOverlay{display:none;position:fixed;inset:0;z-index:99999;background:#f1f3f4;overflow-y:auto}
-    #panicOverlay.show{display:block}
-    .panic-bar{height:64px;background:#0f9d58;display:flex;align-items:center;padding:0 20px;gap:14px;box-shadow:0 2px 4px rgba(0,0,0,.2);position:sticky;top:0;z-index:10}
-    .panic-bar-logo{display:flex;align-items:center;gap:8px;color:#fff}
-    .panic-bar-logo svg{width:28px;height:28px;fill:#fff}
-    .panic-bar-title{font-family:'Google Sans',sans-serif;font-size:1.2rem;font-weight:700;color:#fff}
-    .panic-bar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
-    .panic-avatar{width:36px;height:36px;border-radius:50%;background:#fbbc04;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.9rem}
-    .panic-body{padding:24px;max-width:1000px;margin:0 auto}
-    .panic-class-card{border-radius:8px;overflow:hidden;box-shadow:var(--gc-shadow);cursor:pointer;background:#fff;margin-bottom:20px;max-width:300px}
-    .panic-class-banner{height:90px;background:linear-gradient(135deg,#1565c0,#0d47a1);display:flex;align-items:flex-end;padding:12px;color:#fff}
-    .panic-class-name{font-family:'Google Sans',sans-serif;font-size:1.1rem;font-weight:700}
-    .panic-class-section{font-size:.82rem;opacity:.85}
-    .panic-class-body{padding:14px}
-    .panic-class-teacher{font-size:.85rem;color:var(--gc-muted)}
-    .panic-stream{background:#fff;border-radius:8px;border:1px solid var(--gc-border);padding:20px;margin-bottom:14px;box-shadow:var(--gc-shadow)}
-    .panic-stream-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-    .panic-stream-avatar{width:32px;height:32px;border-radius:50%;background:#0f9d58;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:700;flex-shrink:0}
-    .panic-stream-name{font-weight:500;font-size:.9rem}
-    .panic-stream-time{color:var(--gc-muted);font-size:.8rem;margin-left:auto}
-    .panic-stream-body{color:var(--gc-text);font-size:.9rem;line-height:1.6;padding-left:42px}
-    .panic-hint{position:fixed;bottom:16px;right:16px;background:rgba(32,33,36,.7);color:#fff;padding:8px 14px;border-radius:20px;font-size:.78rem;backdrop-filter:blur(4px)}
+    /* MODAL SHARED */
+    .modal-overlay{position:fixed;inset:0;z-index:99990;background:rgba(32,33,36,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal-card{background:#fff;border-radius:16px;padding:36px 32px;width:min(480px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);animation:gcPop .15s ease both;max-height:85vh;overflow-y:auto}
+    .modal-title{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .modal-sub{color:var(--gc-muted);font-size:.88rem;margin-bottom:22px}
+    .modal-close{float:right;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--gc-muted);padding:0;line-height:1}
+    .modal-close:hover{color:var(--gc-text)}
+    .modal-field label{display:block;font-size:.75rem;font-weight:500;color:var(--gc-green);margin-bottom:5px;letter-spacing:.04em}
+    .modal-input{width:100%;padding:11px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);outline:none;margin-bottom:14px;transition:border-color .15s}
+    .modal-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
+    .modal-textarea{width:100%;padding:11px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);outline:none;margin-bottom:14px;resize:vertical;min-height:80px;transition:border-color .15s}
+    .modal-textarea:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
+    .modal-btn{padding:11px 24px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .15s}
+    .modal-btn:hover{background:#1a7a37}
+    .modal-btn-sec{padding:11px 24px;border-radius:8px;border:1px solid var(--gc-border);background:#fff;color:var(--gc-text);font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:background .15s;margin-right:8px}
+    .modal-btn-sec:hover{background:#f8f9fa}
+    .modal-success{color:var(--gc-green);font-size:.88rem;margin-top:8px;display:none}
+    /* CHANGELOG */
+    .cl-entry{border-left:3px solid var(--gc-green);padding:0 0 20px 16px;margin-bottom:4px;position:relative}
+    .cl-entry:last-child{border-left-color:transparent;padding-bottom:0}
+    .cl-dot{width:12px;height:12px;border-radius:50%;background:var(--gc-green);position:absolute;left:-7.5px;top:2px}
+    .cl-version{font-family:'Google Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--gc-green);margin-bottom:3px}
+    .cl-date{color:var(--gc-muted);font-size:.78rem;margin-bottom:8px}
+    .cl-items{list-style:none;padding:0}
+    .cl-items li{font-size:.85rem;color:var(--gc-text);padding:2px 0;display:flex;gap:6px}
+    .cl-items li::before{content:'•';color:var(--gc-green);flex-shrink:0}
 
     /* ADMIN */
     #adminPanel{display:none;min-height:100vh;background:var(--gc-bg)}
@@ -174,6 +179,8 @@
     .game-name{font-family:'Google Sans',sans-serif;font-size:.92rem;font-weight:700;color:var(--gc-text);line-height:1.3}
 
     .gc-footer{text-align:center;color:var(--gc-muted);font-size:.82rem;padding-bottom:8px}
+    .gc-hdr-btn{padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .15s}
+    .gc-hdr-btn:hover{background:rgba(255,255,255,.28)}
     .hidden{display:none !important}
     @media(max-width:600px){.gc-banner-title{font-size:1.3rem}.game-card-banner{height:76px}}
   </style>
@@ -222,68 +229,150 @@
   </div>
 </div>
 
-<!-- ══ PANIC OVERLAY (fake Google Classroom) ══ -->
-<div id="panicOverlay">
-  <div class="panic-bar">
-    <div class="panic-bar-logo">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-      <span class="panic-bar-title">Google Classroom</span>
+
+<!-- ══ REQUEST MODAL ══ -->
+<div class="modal-overlay" id="requestModal">
+  <div class="modal-card">
+    <button class="modal-close" id="requestClose">✕</button>
+    <div class="modal-title">📩 Request a Game</div>
+    <div class="modal-sub">Got a game you want added? Fill this out and it goes straight to the admin.</div>
+    <div class="modal-field">
+      <label>GAME NAME *</label>
+      <input class="modal-input" id="reqGameName" type="text" placeholder="e.g. Slope, Cookie Clicker…" maxlength="80"/>
     </div>
-    <div class="panic-bar-right">
-      <div class="panic-avatar">S</div>
+    <div class="modal-field">
+      <label>WHY SHOULD WE ADD IT?</label>
+      <textarea class="modal-textarea" id="reqMessage" placeholder="It's really fun because…"></textarea>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px">
+      <button class="modal-btn-sec" id="requestCancel">Cancel</button>
+      <button class="modal-btn" id="requestSubmit">Send Request →</button>
+    </div>
+    <div class="modal-success" id="reqSuccess">✅ Request sent! Thanks.</div>
+  </div>
+</div>
+
+<!-- ══ CHANGELOG MODAL ══ -->
+<div class="modal-overlay" id="changelogModal">
+  <div class="modal-card">
+    <button class="modal-close" id="changelogClose">✕</button>
+    <div class="modal-title">📋 Update History</div>
+    <div class="modal-sub">All changes made to Totally Classroom.</div>
+    <div id="changelogList">
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.8 — Latest</div>
+        <div class="cl-date">May 11, 2026</div>
+        <ul class="cl-items">
+          <li>Added game request button (sends to Google Sheets)</li>
+          <li>Added update history / changelog</li>
+          <li>Panic key now redirects to real classroom.google.com</li>
+          <li>New games: Date With Death, Arsonate, Bad Bodyguards, Banana Simulator, BAS, Bigshot Boxing 2, Bob the Robber 2</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.7</div>
+        <div class="cl-date">May 2026</div>
+        <ul class="cl-items">
+          <li>Added 55+ new games (Atari Adventure, FNAF, Half Life, Granny, Minecraft PE and more)</li>
+          <li>Google Classroom theme redesign</li>
+          <li>Play button hover effect on game cards</li>
+          <li>Favorites system with its own tab (saved to cookies)</li>
+          <li>Panic key (\) added — hides the site</li>
+          <li>Required cookie consent wall</li>
+          <li>Admin panel with visitor and game tracking</li>
+          <li>Ctrl×3 secret shortcut for Friends page</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.6</div>
+        <div class="cl-date">May 2026</div>
+        <ul class="cl-items">
+          <li>Added 37 new games (Blackjack, Bloons, Duck Life 2, Mario Kart 64, Quake 3 and more)</li>
+          <li>Auto-login system — remembers your password between visits</li>
+          <li>Checking screen animation when you return to the site</li>
+          <li>Discord webhook integration for visitor tracking</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.5</div>
+        <div class="cl-date">April 2026</div>
+        <ul class="cl-items">
+          <li>Added 24 new games (CL1, 1v1.LOL, Golf Battle, Half Life, Happy Room and more)</li>
+          <li>Welcome popup: "thank you for playing my game guys!"</li>
+          <li>Password system overhauled — secure admin login (eduu)</li>
+          <li>Admin panel: see who visits and what games they play</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.4</div>
+        <div class="cl-date">April 2026</div>
+        <ul class="cl-items">
+          <li>Added 40 new games (Among Us, Angry Birds, Run 3, Fruit Ninja and more)</li>
+          <li>Search bar added</li>
+          <li>Game count display</li>
+          <li>Favicon updated to custom logo</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.3</div>
+        <div class="cl-date">April 2026</div>
+        <ul class="cl-items">
+          <li>Password gate added to protect the site</li>
+          <li>Games now open inside an iframe (prevents URL bypass)</li>
+          <li>Added Block Blast, Escape The Roads, Geometry Dash World and more</li>
+          <li>Site renamed to Totally Classroom</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.2</div>
+        <div class="cl-date">April 2026</div>
+        <ul class="cl-items">
+          <li>Added Flappy Bird, Subway Surfers, Cookie Clicker, Five Nights</li>
+          <li>Fixed HTML structure — all cards now inside the grid</li>
+          <li>Game count now correctly shows all games</li>
+          <li>Discord button added</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.1</div>
+        <div class="cl-date">April 2026</div>
+        <ul class="cl-items">
+          <li>Dark gold / luxury theme applied</li>
+          <li>Cards redesigned with hover effects</li>
+          <li>Search and filter system</li>
+          <li>Made by someone in lowellmiddleschool</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.0 — Initial Launch</div>
+        <div class="cl-date">April 2026</div>
+        <ul class="cl-items">
+          <li>Site launched with Space Clicker and Dino Game</li>
+          <li>Basic game card grid</li>
+          <li>edu lowellschools branding</li>
+        </ul>
+      </div>
+
     </div>
   </div>
-  <div class="panic-body">
-    <h2 style="font-family:'Google Sans',sans-serif;font-size:1rem;font-weight:700;color:#5f6368;margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em">Enrolled classes</h2>
-    <div class="panic-class-card">
-      <div class="panic-class-banner">
-        <div>
-          <div class="panic-class-name">Period 3 · Math</div>
-          <div class="panic-class-section">Mr. Harrison · Spring 2026</div>
-        </div>
-      </div>
-      <div class="panic-class-body">
-        <div class="panic-class-teacher">Mr. Harrison</div>
-      </div>
-    </div>
-    <div class="panic-class-card" style="background:#fff;max-width:300px">
-      <div class="panic-class-banner" style="background:linear-gradient(135deg,#ad1457,#880e4f)">
-        <div>
-          <div class="panic-class-name">Period 5 · English</div>
-          <div class="panic-class-section">Ms. Rivera · Spring 2026</div>
-        </div>
-      </div>
-      <div class="panic-class-body">
-        <div class="panic-class-teacher">Ms. Rivera</div>
-      </div>
-    </div>
-    <h2 style="font-family:'Google Sans',sans-serif;font-size:1rem;font-weight:700;color:#5f6368;margin:24px 0 14px;text-transform:uppercase;letter-spacing:.08em">Recent Activity</h2>
-    <div class="panic-stream">
-      <div class="panic-stream-header">
-        <div class="panic-stream-avatar">H</div>
-        <span class="panic-stream-name">Mr. Harrison</span>
-        <span class="panic-stream-time">Today, 8:42 AM</span>
-      </div>
-      <div class="panic-stream-body">Chapter 9 worksheet due Friday. Please show all work for full credit. Remember to write your name and class period at the top of the page.</div>
-    </div>
-    <div class="panic-stream">
-      <div class="panic-stream-header">
-        <div class="panic-stream-avatar" style="background:#ad1457">R</div>
-        <span class="panic-stream-name">Ms. Rivera</span>
-        <span class="panic-stream-time">Yesterday, 2:15 PM</span>
-      </div>
-      <div class="panic-stream-body">Great job on the essay drafts! I've returned them with comments. Final draft is due next Monday. Come to office hours if you need help.</div>
-    </div>
-    <div class="panic-stream">
-      <div class="panic-stream-header">
-        <div class="panic-stream-avatar">H</div>
-        <span class="panic-stream-name">Mr. Harrison</span>
-        <span class="panic-stream-time">Mon, May 5</span>
-      </div>
-      <div class="panic-stream-body">Don't forget — quiz on Thursday covering sections 7.1 through 7.4. Review your notes and the practice problems at the end of each section.</div>
-    </div>
-  </div>
-  <div class="panic-hint">Press <kbd style="background:rgba(255,255,255,.2);padding:1px 5px;border-radius:3px">\</kbd> again to return</div>
 </div>
 
 <!-- ══ ADMIN PANEL ══ -->
@@ -334,7 +423,9 @@
         Discord
       </a>
       <span class="gc-badge">lowellmiddleschool</span>
-      <span class="panic-pill">\ = panic key</span>
+      <button class="gc-hdr-btn" id="requestBtn" title="Request a game">📩 Request</button>
+      <button class="gc-hdr-btn" id="changelogBtn" title="Update history">📋 Updates</button>
+      <span class="panic-pill">\ = panic (Google Classroom)</span>
     </div>
   </div>
   <div class="gc-banner">
@@ -370,13 +461,13 @@ const STORAGE_KEY='tc_auth';
 const LOGS_KEY='tc_logs';
 const COOKIE_KEY='tc_cookies';
 const FAV_KEY='tc_favs';
-const WEBHOOK='https://discordapp.com/api/webhooks/1500964807363268760/WWeibrg27fowPNJFpkOqYSv5B2nrJMmukklp8wN_1hUpdjumdyJOl1FDuVCN9Waoulbl';
+
 
 let currentSession=null;
 let currentTab='all';
 let ctrlCount=0,ctrlTimer=null;
 
-function sendToDiscord(msg){fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:msg})}).catch(()=>{});}
+// Discord webhook removed — using Google Sheets instead
 function getLogs(){try{return JSON.parse(localStorage.getItem(LOGS_KEY))||[];}catch{return[];}}
 function saveLogs(l){localStorage.setItem(LOGS_KEY,JSON.stringify(l));}
 function getFavs(){try{return JSON.parse(localStorage.getItem(FAV_KEY))||[];}catch{return[];}}
@@ -427,7 +518,7 @@ function tryPassword(){
   } else if(pwInput.dataset.adminReady==='1'){
     if(val===ADMIN_PASSWORD){
       document.getElementById('passwordOverlay').style.display='none';
-      sendToDiscord('🛡️ Admin logged in.');
+      sendToSheets({type:'visitor',event:'admin_login',time:new Date().toISOString()});
       enterAdmin();
     } else {
       pwError.textContent='Wrong admin password. Reloading…';
@@ -459,7 +550,7 @@ function showWelcome(cb){
 
 function enterSite(){
   logVisitor();
-  sendToDiscord('👤 Someone just joined Totally Classroom! _('+new Date().toLocaleString()+')_');
+  sendToSheets({type:'visitor',event:'join',time:new Date().toISOString()});
   document.getElementById('mainContent').style.display='block';
   buildGrid();updateCounts();
 }
@@ -470,10 +561,7 @@ function enterAdmin(){
 }
 
 // ══ PANIC KEY ══
-const panicOverlay=document.getElementById('panicOverlay');
-let panicOn=false;
 document.addEventListener('keydown',e=>{
-  // Ctrl x3 for friends
   if(e.key==='Control'){
     ctrlCount++;
     clearTimeout(ctrlTimer);
@@ -482,12 +570,10 @@ document.addEventListener('keydown',e=>{
     return;
   }
   if(e.key==='\\'){
-    panicOn=!panicOn;
-    panicOverlay.classList.toggle('show',panicOn);
+    window.location.href='https://classroom.google.com';
     return;
   }
   if(e.key==='Escape'){
-    if(panicOn){panicOn=false;panicOverlay.classList.remove('show');return;}
     if(document.getElementById('gameOverlay').classList.contains('active')){closeGame();}
   }
 });
@@ -721,6 +807,14 @@ const GAMES=[
   {name:'Lundertal Yellow',file:'clundertainleyellow.html',icon:'💛',tag:'new'},
   {name:'Untime',file:'cluntime.html',icon:'⏰',tag:'new'},
   {name:'Upslash',file:'clupslash.html',icon:'⚡',tag:'new'},
+  // v1.8 NEW GAMES
+  {name:'Date With Death',file:'cladatewithdeath.html',icon:'💀',tag:'new'},
+  {name:'Arsonate',file:'clarsonate.html',icon:'🔥',tag:'new'},
+  {name:'Bad Bodyguards',file:'clbadbodyguards.html',icon:'🕵️',tag:'new'},
+  {name:'Banana Simulator',file:'clbananasimulator.html',icon:'🍌',tag:'new'},
+  {name:'BAS',file:'clbas.html',icon:'🎮',tag:'new'},
+  {name:'Bigshot Boxing 2',file:'clbigshotboxing2.html',icon:'🥊',tag:'new'},
+  {name:'Bob the Robber 2',file:'clbobtherobber2.html',icon:'🦹',tag:'new'},
   {name:'UZG',file:'clUZG.html',icon:'🎮',tag:'new'},
   {name:'Webeco Whatwebehold',file:'clwebecomewhatewebehold.html',icon:'🌐',tag:'new'},
   {name:'Wheelie Bike',file:'clwheeliebikie.html',icon:'🚲',tag:'new'},
@@ -791,10 +885,42 @@ const closeBtn=document.getElementById('closeGameBtn');
 function openGame(file,name){
   gameFrame.src=file;gameTitle.textContent=name;
   gameOverlay.classList.add('active');document.body.style.overflow='hidden';
-  logGame(name);sendToDiscord('🎮 Someone is playing **'+name+'**');
+  logGame(name);sendToSheets({type:'visitor',event:'game',detail:name,time:new Date().toISOString()});
 }
 function closeGame(){gameOverlay.classList.remove('active');gameFrame.src='';document.body.style.overflow='';}
 closeBtn.addEventListener('click',closeGame);
+
+// ══ GOOGLE SHEETS ══
+const SHEETS_URL='https://script.google.com/a/macros/lowellschools.com/s/AKfycbyaKbidsFQZQE84gNvlSA56zVtHjeZG6-yyyKZHquEmm_8_uDCuZRIRi6-dnoRu5kDF/exec'; // ← paste your deployment URL here
+
+function sendToSheets(payload){
+  if(!SHEETS_URL.includes('YOUR_DEPLOYMENT'))
+    fetch(SHEETS_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
+}
+
+// ══ REQUEST MODAL ══
+const requestModal=document.getElementById('requestModal');
+document.getElementById('requestBtn').addEventListener('click',()=>requestModal.classList.add('show'));
+document.getElementById('requestClose').addEventListener('click',()=>requestModal.classList.remove('show'));
+document.getElementById('requestCancel').addEventListener('click',()=>requestModal.classList.remove('show'));
+requestModal.addEventListener('click',e=>{if(e.target===requestModal)requestModal.classList.remove('show');});
+
+document.getElementById('requestSubmit').addEventListener('click',()=>{
+  const game=document.getElementById('reqGameName').value.trim();
+  if(!game){document.getElementById('reqGameName').focus();return;}
+  const msg=document.getElementById('reqMessage').value.trim();
+  sendToSheets({type:'request',game,message:msg,time:new Date().toISOString()});
+  document.getElementById('reqSuccess').style.display='block';
+  document.getElementById('reqGameName').value='';
+  document.getElementById('reqMessage').value='';
+  setTimeout(()=>{document.getElementById('reqSuccess').style.display='none';requestModal.classList.remove('show');},2000);
+});
+
+// ══ CHANGELOG MODAL ══
+const changelogModal=document.getElementById('changelogModal');
+document.getElementById('changelogBtn').addEventListener('click',()=>changelogModal.classList.add('show'));
+document.getElementById('changelogClose').addEventListener('click',()=>changelogModal.classList.remove('show'));
+changelogModal.addEventListener('click',e=>{if(e.target===changelogModal)changelogModal.classList.remove('show');});
 
 // Search
 document.getElementById('searchInput').addEventListener('input',()=>{buildGrid();});
