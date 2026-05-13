@@ -16,12 +16,12 @@
     /* COOKIE WALL */
     #cookieWall{position:fixed;inset:0;z-index:999999;background:rgba(32,33,36,.7);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}
     #cookieWall.gone{display:none}
-    .cookie-card{background:#fff;border-radius:16px;padding:40px 36px;width:min(460px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);text-align:center;animation:gcPop .15s ease both}
+    .cookie-card{background:#fff;border-radius:16px;padding:40px 36px;width:min(460px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);text-align:center;animation:gcPop .45s ease both}
     .cookie-icon{font-size:2.8rem;margin-bottom:14px}
     .cookie-title{font-family:'Google Sans',sans-serif;font-size:1.4rem;font-weight:700;color:var(--gc-text);margin-bottom:10px}
     .cookie-body{color:var(--gc-muted);font-size:.9rem;line-height:1.6;margin-bottom:28px}
     .cookie-body strong{color:var(--gc-text)}
-    .cookie-accept-btn{width:100%;padding:13px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .15s}
+    .cookie-accept-btn{width:100%;padding:13px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .3s}
     .cookie-accept-btn:hover{background:#1a7a37}
     .cookie-decline{margin-top:12px;display:block;color:var(--gc-muted);font-size:.8rem;cursor:default}
 
@@ -29,7 +29,7 @@
 
     /* PASSWORD */
     #passwordOverlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(32,33,36,.6);backdrop-filter:blur(4px)}
-    .pw-card{background:#fff;border-radius:16px;padding:40px 36px;width:min(420px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);animation:gcPop .15s ease both}
+    .pw-card{background:#fff;border-radius:16px;padding:40px 36px;width:min(420px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);animation:gcPop .45s ease both}
     .pw-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;justify-content:center}
     .pw-logo-icon{width:40px;height:40px;background:var(--gc-header);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;font-weight:700;font-family:'Google Sans',sans-serif}
     .pw-logo-text{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:700}
@@ -39,7 +39,7 @@
     .pw-input{width:100%;padding:12px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:1rem;color:var(--gc-text);outline:none;transition:border-color .15s,box-shadow .15s;margin-bottom:14px}
     .pw-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
     .pw-input::placeholder{color:#9aa0a6}
-    .pw-btn{width:100%;padding:12px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .15s}
+    .pw-btn{width:100%;padding:12px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .3s}
     .pw-btn:hover{background:#1a7a37}
     .pw-error{margin-top:10px;font-size:.85rem;color:#d93025;min-height:20px;text-align:center}
     .pw-error.hidden{opacity:0}
@@ -49,11 +49,11 @@
     /* WELCOME */
     #welcomePopup{position:fixed;inset:0;z-index:9998;display:none;align-items:center;justify-content:center;background:rgba(32,33,36,.6);backdrop-filter:blur(4px)}
     #welcomePopup.show{display:flex}
-    .welcome-card{background:#fff;border-radius:16px;padding:44px 40px;width:min(440px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);text-align:center;animation:gcPop .15s ease both}
+    .welcome-card{background:#fff;border-radius:16px;padding:44px 40px;width:min(440px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);text-align:center;animation:gcPop .45s ease both}
     .welcome-emoji{font-size:3rem;margin-bottom:14px}
     .welcome-title{font-family:'Google Sans',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:12px}
     .welcome-msg{color:var(--gc-muted);font-size:1rem;line-height:1.6;margin-bottom:28px}
-    .welcome-continue{padding:12px 32px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .15s}
+    .welcome-continue{padding:12px 32px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .3s}
     .welcome-continue:hover{background:#1a7a37}
 
     /* PANIC OVERLAY — fake Google Classroom */
@@ -70,7 +70,7 @@
     .modal-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
     .modal-textarea{width:100%;padding:11px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);outline:none;margin-bottom:14px;resize:vertical;min-height:80px;transition:border-color .15s}
     .modal-textarea:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
-    .modal-btn{padding:11px 24px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .15s}
+    .modal-btn{padding:11px 24px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .3s}
     .modal-btn:hover{background:#1a7a37}
     .modal-btn-sec{padding:11px 24px;border-radius:8px;border:1px solid var(--gc-border);background:#fff;color:var(--gc-text);font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:background .15s;margin-right:8px}
     .modal-btn-sec:hover{background:#f8f9fa}
@@ -90,7 +90,7 @@
     .admin-bar{background:var(--gc-header);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .admin-bar-title{font-family:'Google Sans',sans-serif;font-size:1.2rem;font-weight:700}
     .admin-bar-btns{display:flex;gap:10px}
-    .admin-bar-btn{padding:8px 18px;border-radius:6px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:background .15s}
+    .admin-bar-btn{padding:8px 18px;border-radius:6px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:background .3s}
     .admin-bar-btn:hover{background:rgba(255,255,255,.15)}
     .admin-bar-btn.danger{border-color:rgba(242,139,130,.5);color:#f28b82}
     .admin-inner{width:min(1000px,calc(100% - 32px));margin:0 auto;padding:28px 0 56px}
@@ -114,7 +114,7 @@
     #gameOverlay.active{display:flex}
     .game-topbar{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:48px;background:var(--gc-header);gap:12px;flex-shrink:0}
     .game-topbar-title{font-family:'Google Sans',sans-serif;font-size:1rem;font-weight:700;color:#fff}
-    .game-close-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:background .15s}
+    .game-close-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:background .3s}
     .game-close-btn:hover{background:rgba(255,255,255,.15)}
     #gameFrame{flex:1;width:100%;border:none;display:block}
 
@@ -146,7 +146,7 @@
     /* SEARCH */
     .gc-searchbar{background:#fff;border-bottom:1px solid var(--gc-border);padding:12px 24px}
     .gc-searchbar-inner{width:min(1100px,100%);margin:0 auto;display:flex;gap:12px;align-items:center}
-    .gc-search{flex:1 1 280px;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;border:1px solid var(--gc-border);background:#f1f3f4;transition:background .15s,border-color .15s}
+    .gc-search{flex:1 1 280px;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;border:1px solid var(--gc-border);background:#f1f3f4;transition:background .3s,border-color .3s}
     .gc-search:focus-within{background:#fff;border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.15)}
     .gc-search-icon{color:var(--gc-muted);font-size:.9rem;flex-shrink:0}
     .gc-search input{width:100%;border:none;outline:none;background:transparent;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text)}
@@ -161,11 +161,11 @@
     .gc-empty p{font-size:.95rem}
 
     /* CARD */
-    .game-card{background:#fff;border-radius:8px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);overflow:hidden;cursor:pointer;transition:box-shadow .15s,transform .15s;position:relative;display:flex;flex-direction:column;animation:gcFadeUp .18s ease both}
+    .game-card{background:#fff;border-radius:8px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);overflow:hidden;cursor:pointer;transition:box-shadow .3s,transform .3s;position:relative;display:flex;flex-direction:column;animation:gcFadeUp .35s ease both}
     @keyframes gcFadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-    .game-card:hover{box-shadow:var(--gc-shadow2);transform:translateY(-2px)}
+    .game-card:hover{box-shadow:var(--gc-shadow2);transform:translateY(-2px);transition:box-shadow .3s,transform .3s}
     .game-card-banner{height:96px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;position:relative;background:linear-gradient(135deg,#e6f4ea,#c8f0d6)}
-    .play-overlay{position:absolute;inset:0;background:rgba(15,157,88,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
+    .play-overlay{position:absolute;inset:0;background:rgba(15,157,88,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
     .game-card:hover .play-overlay{opacity:1}
     .play-btn-circle{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
     .play-btn-triangle{width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid var(--gc-green);margin-left:4px}
@@ -179,13 +179,26 @@
     .game-name{font-family:'Google Sans',sans-serif;font-size:.92rem;font-weight:700;color:var(--gc-text);line-height:1.3}
 
     .gc-footer{text-align:center;color:var(--gc-muted);font-size:.82rem;padding-bottom:8px}
-    .gc-hdr-btn{padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .15s}
+    .gc-hdr-btn{padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .3s}
     .gc-hdr-btn:hover{background:rgba(255,255,255,.28)}
     .hidden{display:none !important}
     @media(max-width:600px){.gc-banner-title{font-size:1.3rem}.game-card-banner{height:76px}}
   </style>
 </head>
 <body>
+
+<!-- ══ PASSWORD CHANGED POPUP ══ -->
+<div class="modal-overlay show" id="pwChangedPopup" style="z-index:9999999">
+  <div class="modal-card" style="text-align:center;max-width:420px">
+    <div style="font-size:2.5rem;margin-bottom:14px">🤫</div>
+    <div class="modal-title" style="justify-content:center;font-size:1.25rem;margin-bottom:10px">Password Changed</div>
+    <p style="color:#5f6368;font-size:.92rem;line-height:1.7;margin-bottom:24px">
+      The password has been updated because too many people had access to the website.<br><br>
+      <strong>If I gave you the website — don't tell anybody.</strong> 🤫
+    </p>
+    <button class="modal-btn" id="pwChangedOk" style="width:100%">Got it 👍</button>
+  </div>
+</div>
 
 <!-- ══ COOKIE WALL (required) ══ -->
 <div id="cookieWall">
@@ -262,10 +275,22 @@
 
       <div class="cl-entry">
         <div class="cl-dot"></div>
-        <div class="cl-version">v1.8 — Latest</div>
+        <div class="cl-version">v1.9 — Latest</div>
+        <div class="cl-date">May 13, 2026</div>
+        <ul class="cl-items">
+          <li>🤫 Password changed — too many people had the old one</li>
+          <li>Password changed popup added on site load</li>
+          <li>Request button now opens a Google Form instead of a modal</li>
+          <li>All animations slowed down for a smoother feel</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.8</div>
         <div class="cl-date">May 11, 2026</div>
         <ul class="cl-items">
-          <li>Added game request button (sends to Google Sheets)</li>
+          <li>Added game request button (linked to Google Sheets)</li>
           <li>Added update history / changelog</li>
           <li>Panic key now redirects to real classroom.google.com</li>
           <li>New games: Date With Death, Arsonate, Bad Bodyguards, Banana Simulator, BAS, Bigshot Boxing 2, Bob the Robber 2</li>
@@ -454,7 +479,7 @@
 </div>
 
 <script>
-const CORRECT_PASSWORD='lowell123';
+const CORRECT_PASSWORD='eduisthebest1';
 const ADMIN_USERNAME='eduu';
 const ADMIN_PASSWORD='0424';
 const STORAGE_KEY='tc_auth';
@@ -487,6 +512,11 @@ document.getElementById('cookieAcceptBtn').addEventListener('click',()=>{
 });
 window.addEventListener('DOMContentLoaded',()=>{
   if(localStorage.getItem(COOKIE_KEY)==='1'){cookieWall.classList.add('gone');startApp();}
+});
+
+document.getElementById('pwChangedOk').addEventListener('click',()=>{
+  document.getElementById('pwChangedPopup').classList.remove('show');
+  document.getElementById('pwChangedPopup').style.display='none';
 });
 
 function startApp(){
@@ -900,7 +930,7 @@ function sendToSheets(payload){
 
 // ══ REQUEST MODAL ══
 const requestModal=document.getElementById('requestModal');
-document.getElementById('requestBtn').addEventListener('click',()=>requestModal.classList.add('show'));
+document.getElementById('requestBtn').addEventListener('click',()=>window.open('https://forms.gle/agdrF5QMsvUgKMYJ8','_blank'));
 document.getElementById('requestClose').addEventListener('click',()=>requestModal.classList.remove('show'));
 document.getElementById('requestCancel').addEventListener('click',()=>requestModal.classList.remove('show'));
 requestModal.addEventListener('click',e=>{if(e.target===requestModal)requestModal.classList.remove('show');});
