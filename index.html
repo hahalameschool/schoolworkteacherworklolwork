@@ -9,198 +9,356 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--gc-green:#1e8e3e;--gc-green2:#34a853;--gc-green3:#e6f4ea;--gc-blue:#1a73e8;--gc-bg:#f8f9fa;--gc-white:#fff;--gc-border:#dadce0;--gc-text:#202124;--gc-muted:#5f6368;--gc-header:#0f9d58;--gc-shadow:0 1px 3px rgba(60,64,67,.3),0 4px 8px rgba(60,64,67,.15);--gc-shadow2:0 1px 2px rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15)}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{min-height:100%;font-family:'Roboto',sans-serif;color:var(--gc-text);background:var(--gc-bg);overflow-x:hidden}
+    /* ═══════════════════════════════════════════
+       THEME VARIABLES
+    ═══════════════════════════════════════════ */
+    :root{
+      --gc-green:#1e8e3e;--gc-green2:#34a853;--gc-green3:#e6f4ea;
+      --gc-blue:#1a73e8;--gc-bg:#f8f9fa;--gc-white:#fff;
+      --gc-border:#dadce0;--gc-text:#202124;--gc-muted:#5f6368;
+      --gc-header:#0f9d58;--gc-header2:#1e8e3e;
+      --gc-shadow:0 1px 3px rgba(60,64,67,.3),0 4px 8px rgba(60,64,67,.15);
+      --gc-shadow2:0 1px 2px rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);
+      --gc-card-banner:linear-gradient(135deg,#e6f4ea,#c8f0d6);
+      --gc-play-overlay:rgba(15,157,88,.85);
+      --gc-banner-grad:linear-gradient(135deg,#0f9d58,#1e8e3e);
+      --gc-tab-bg:#fff;--gc-search-bg:#f1f3f4;
+      --gc-toast-bg:#323232;--gc-toast-color:#fff;
+      --transition:0.3s cubic-bezier(.4,0,.2,1);
+    }
 
-    /* COOKIE WALL */
+    /* NEON THEME */
+    body.theme-neon{
+      --gc-green:#00ff88;--gc-green2:#00cc6a;--gc-green3:rgba(0,255,136,.1);
+      --gc-bg:#0a0a0f;--gc-white:#12121a;--gc-border:#1e1e2e;
+      --gc-text:#e0e0ff;--gc-muted:#7070a0;
+      --gc-header:#0a0a0f;--gc-header2:#0a0a0f;
+      --gc-card-banner:linear-gradient(135deg,#0d0d1a,#0a1a0f);
+      --gc-play-overlay:rgba(0,255,136,.8);
+      --gc-banner-grad:linear-gradient(135deg,#050510,#0a1a10);
+      --gc-tab-bg:#12121a;--gc-search-bg:#1a1a2e;
+      --gc-shadow:0 0 20px rgba(0,255,136,.15),0 4px 12px rgba(0,0,0,.5);
+      --gc-shadow2:0 0 30px rgba(0,255,136,.3),0 8px 24px rgba(0,0,0,.6);
+      --gc-toast-bg:#00ff88;--gc-toast-color:#000;
+    }
+
+    /* DARK THEME */
+    body.theme-dark{
+      --gc-green:#8ab4f8;--gc-green2:#669df6;--gc-green3:rgba(138,180,248,.1);
+      --gc-bg:#202124;--gc-white:#2d2d30;--gc-border:#3c4043;
+      --gc-text:#e8eaed;--gc-muted:#9aa0a6;
+      --gc-header:#1f1f1f;--gc-header2:#2d2d30;
+      --gc-card-banner:linear-gradient(135deg,#2a2a2d,#1f2a2a);
+      --gc-play-overlay:rgba(138,180,248,.85);
+      --gc-banner-grad:linear-gradient(135deg,#1f1f1f,#2d2d30);
+      --gc-tab-bg:#2d2d30;--gc-search-bg:#3c4043;
+      --gc-toast-bg:#8ab4f8;--gc-toast-color:#000;
+    }
+
+    /* SUNSET THEME */
+    body.theme-sunset{
+      --gc-green:#ff6b35;--gc-green2:#ff8c42;--gc-green3:rgba(255,107,53,.1);
+      --gc-bg:#1a0a00;--gc-white:#1f0f05;--gc-border:#3d1f0a;
+      --gc-text:#ffe8d6;--gc-muted:#c09070;
+      --gc-header:#1a0a00;--gc-header2:#2d1508;
+      --gc-card-banner:linear-gradient(135deg,#1a0d05,#2d1508);
+      --gc-play-overlay:rgba(255,107,53,.85);
+      --gc-banner-grad:linear-gradient(135deg,#ff6b35,#ff8c42);
+      --gc-tab-bg:#1f0f05;--gc-search-bg:#2d1508;
+      --gc-toast-bg:#ff6b35;--gc-toast-color:#fff;
+    }
+
+    /* OCEAN THEME */
+    body.theme-ocean{
+      --gc-green:#00b4d8;--gc-green2:#0096c7;--gc-green3:rgba(0,180,216,.1);
+      --gc-bg:#03045e;--gc-white:#023e8a;--gc-border:#0077b6;
+      --gc-text:#caf0f8;--gc-muted:#90e0ef;
+      --gc-header:#03045e;--gc-header2:#023e8a;
+      --gc-card-banner:linear-gradient(135deg,#023e8a,#03045e);
+      --gc-play-overlay:rgba(0,180,216,.85);
+      --gc-banner-grad:linear-gradient(135deg,#00b4d8,#0096c7);
+      --gc-tab-bg:#023e8a;--gc-search-bg:#0077b6;
+      --gc-toast-bg:#00b4d8;--gc-toast-color:#000;
+    }
+
+    /* CANDY THEME */
+    body.theme-candy{
+      --gc-green:#ff4fab;--gc-green2:#e040a0;--gc-green3:rgba(255,79,171,.1);
+      --gc-bg:#fff0f8;--gc-white:#fff;--gc-border:#ffd6f0;
+      --gc-text:#3d003d;--gc-muted:#c060a0;
+      --gc-header:#ff4fab;--gc-header2:#e040a0;
+      --gc-card-banner:linear-gradient(135deg,#fff0f8,#ffe0f5);
+      --gc-play-overlay:rgba(255,79,171,.85);
+      --gc-banner-grad:linear-gradient(135deg,#ff4fab,#e040a0);
+      --gc-tab-bg:#fff;--gc-search-bg:#fff0f8;
+      --gc-toast-bg:#ff4fab;--gc-toast-color:#fff;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;font-family:'Roboto',sans-serif;color:var(--gc-text);background:var(--gc-bg);overflow-x:hidden;transition:background var(--transition),color var(--transition)}
+
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes gcPop{from{opacity:0;transform:scale(.92) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    @keyframes gcFadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes slideInRight{from{opacity:0;transform:translateX(120%)}to{opacity:1;transform:translateX(0)}}
+    @keyframes slideOutRight{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(120%)}}
+    @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(var(--gc-green-rgb,.3))}50%{box-shadow:0 0 20px 4px rgba(var(--gc-green-rgb,.5))}}
+    @keyframes neonFlicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.7}94%{opacity:1}96%{opacity:.8}97%{opacity:1}}
+    .shake{animation:shake .35s ease}
+
+    /* ═══ TOAST NOTIFICATION ═══ */
+    #toastContainer{position:fixed;bottom:24px;right:24px;z-index:9999999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+    .toast{background:var(--gc-toast-bg);color:var(--gc-toast-color);padding:14px 20px;border-radius:12px;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:slideInRight .4s cubic-bezier(.34,1.56,.64,1) both;pointer-events:all;max-width:320px;line-height:1.4;cursor:pointer;display:flex;align-items:flex-start;gap:10px}
+    .toast.toast-red{background:#d93025;color:#fff}
+    .toast.toast-out{animation:slideOutRight .3s ease forwards}
+    .toast-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+    .toast-msg{flex:1}
+
+    /* ═══ COOKIE WALL ═══ */
     #cookieWall{position:fixed;inset:0;z-index:999999;background:rgba(32,33,36,.7);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}
     #cookieWall.gone{display:none}
-    .cookie-card{background:#fff;border-radius:16px;padding:40px 36px;width:min(460px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);text-align:center;animation:gcPop .45s ease both}
+    .cookie-card{background:var(--gc-white);border-radius:20px;padding:40px 36px;width:min(460px,calc(100% - 32px));box-shadow:0 24px 48px rgba(0,0,0,.25);text-align:center;animation:gcPop .45s ease both;border:1px solid var(--gc-border)}
     .cookie-icon{font-size:2.8rem;margin-bottom:14px}
     .cookie-title{font-family:'Google Sans',sans-serif;font-size:1.4rem;font-weight:700;color:var(--gc-text);margin-bottom:10px}
     .cookie-body{color:var(--gc-muted);font-size:.9rem;line-height:1.6;margin-bottom:28px}
     .cookie-body strong{color:var(--gc-text)}
-    .cookie-accept-btn{width:100%;padding:13px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .3s}
-    .cookie-accept-btn:hover{background:#1a7a37}
-    .cookie-decline{margin-top:12px;display:block;color:var(--gc-muted);font-size:.8rem;cursor:default}
+    .cookie-accept-btn{width:100%;padding:13px;border-radius:10px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all var(--transition);letter-spacing:.02em}
+    .cookie-accept-btn:hover{opacity:.9;transform:translateY(-1px)}
+    .cookie-decline{margin-top:12px;display:block;color:var(--gc-muted);font-size:.8rem}
 
-    @keyframes gcPop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-
-    /* PASSWORD */
+    /* ═══ PASSWORD ═══ */
     #passwordOverlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(32,33,36,.6);backdrop-filter:blur(4px)}
-    .pw-card{background:#fff;border-radius:16px;padding:40px 36px;width:min(420px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);animation:gcPop .45s ease both}
+    .pw-card{background:var(--gc-white);border-radius:20px;padding:40px 36px;width:min(420px,calc(100% - 32px));box-shadow:0 24px 48px rgba(0,0,0,.25);animation:gcPop .45s ease both;border:1px solid var(--gc-border)}
     .pw-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;justify-content:center}
     .pw-logo-icon{width:40px;height:40px;background:var(--gc-header);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;font-weight:700;font-family:'Google Sans',sans-serif}
-    .pw-logo-text{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:700}
-    .pw-title{font-family:'Google Sans',sans-serif;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:6px}
+    .pw-logo-text{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:700;color:var(--gc-text)}
+    .pw-title{font-family:'Google Sans',sans-serif;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:6px;color:var(--gc-text)}
     .pw-sub{color:var(--gc-muted);font-size:.9rem;text-align:center;margin-bottom:28px}
-    .pw-field label{display:block;font-size:.75rem;font-weight:500;color:var(--gc-green);margin-bottom:6px;letter-spacing:.04em}
-    .pw-input{width:100%;padding:12px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:1rem;color:var(--gc-text);outline:none;transition:border-color .15s,box-shadow .15s;margin-bottom:14px}
-    .pw-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
-    .pw-input::placeholder{color:#9aa0a6}
-    .pw-btn{width:100%;padding:12px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .3s}
-    .pw-btn:hover{background:#1a7a37}
+    .pw-field label{display:block;font-size:.75rem;font-weight:500;color:var(--gc-green);margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase}
+    .pw-input{width:100%;padding:12px 14px;border:2px solid var(--gc-border);border-radius:10px;font-family:'Roboto',sans-serif;font-size:1rem;color:var(--gc-text);background:var(--gc-bg);outline:none;transition:all var(--transition);margin-bottom:14px}
+    .pw-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(30,142,62,.15)}
+    .pw-input::placeholder{color:var(--gc-muted)}
+    .pw-btn{width:100%;padding:13px;border-radius:10px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all var(--transition);letter-spacing:.02em}
+    .pw-btn:hover{opacity:.9;transform:translateY(-1px)}
     .pw-error{margin-top:10px;font-size:.85rem;color:#d93025;min-height:20px;text-align:center}
     .pw-error.hidden{opacity:0}
-    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-    .shake{animation:shake .35s ease}
 
-    /* WELCOME */
+    /* ═══ WELCOME ═══ */
     #welcomePopup{position:fixed;inset:0;z-index:9998;display:none;align-items:center;justify-content:center;background:rgba(32,33,36,.6);backdrop-filter:blur(4px)}
     #welcomePopup.show{display:flex}
-    .welcome-card{background:#fff;border-radius:16px;padding:44px 40px;width:min(440px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);text-align:center;animation:gcPop .45s ease both}
-    .welcome-emoji{font-size:3rem;margin-bottom:14px}
-    .welcome-title{font-family:'Google Sans',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:12px}
+    .welcome-card{background:var(--gc-white);border-radius:20px;padding:44px 40px;width:min(440px,calc(100% - 32px));box-shadow:0 24px 48px rgba(0,0,0,.25);text-align:center;animation:gcPop .5s cubic-bezier(.34,1.56,.64,1) both;border:1px solid var(--gc-border)}
+    .welcome-emoji{font-size:3.2rem;margin-bottom:14px}
+    .welcome-title{font-family:'Google Sans',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:12px;color:var(--gc-text)}
     .welcome-msg{color:var(--gc-muted);font-size:1rem;line-height:1.6;margin-bottom:28px}
-    .welcome-continue{padding:12px 32px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .3s}
-    .welcome-continue:hover{background:#1a7a37}
+    .welcome-continue{padding:12px 32px;border-radius:10px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all var(--transition)}
+    .welcome-continue:hover{opacity:.9;transform:translateY(-1px)}
 
-    /* PANIC OVERLAY — fake Google Classroom */
-    /* MODAL SHARED */
+    /* ═══ MODAL SHARED ═══ */
     .modal-overlay{position:fixed;inset:0;z-index:99990;background:rgba(32,33,36,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center}
     .modal-overlay.show{display:flex}
-    .modal-card{background:#fff;border-radius:16px;padding:36px 32px;width:min(480px,calc(100% - 32px));box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14);animation:gcPop .15s ease both;max-height:85vh;overflow-y:auto}
-    .modal-title{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .modal-card{background:var(--gc-white);border-radius:20px;padding:36px 32px;width:min(500px,calc(100% - 32px));box-shadow:0 24px 48px rgba(0,0,0,.25);animation:gcPop .2s cubic-bezier(.34,1.56,.64,1) both;max-height:88vh;overflow-y:auto;border:1px solid var(--gc-border)}
+    .modal-title{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;color:var(--gc-text)}
     .modal-sub{color:var(--gc-muted);font-size:.88rem;margin-bottom:22px}
-    .modal-close{float:right;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--gc-muted);padding:0;line-height:1}
+    .modal-close{float:right;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--gc-muted);padding:0;line-height:1;transition:color var(--transition)}
     .modal-close:hover{color:var(--gc-text)}
-    .modal-field label{display:block;font-size:.75rem;font-weight:500;color:var(--gc-green);margin-bottom:5px;letter-spacing:.04em}
-    .modal-input{width:100%;padding:11px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);outline:none;margin-bottom:14px;transition:border-color .15s}
-    .modal-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
-    .modal-textarea{width:100%;padding:11px 14px;border:1px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);outline:none;margin-bottom:14px;resize:vertical;min-height:80px;transition:border-color .15s}
-    .modal-textarea:focus{border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.2)}
-    .modal-btn{padding:11px 24px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .3s}
-    .modal-btn:hover{background:#1a7a37}
-    .modal-btn-sec{padding:11px 24px;border-radius:8px;border:1px solid var(--gc-border);background:#fff;color:var(--gc-text);font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:background .15s;margin-right:8px}
-    .modal-btn-sec:hover{background:#f8f9fa}
+    .modal-field label{display:block;font-size:.75rem;font-weight:500;color:var(--gc-green);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase}
+    .modal-input{width:100%;padding:11px 14px;border:2px solid var(--gc-border);border-radius:10px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);background:var(--gc-bg);outline:none;margin-bottom:14px;transition:all var(--transition)}
+    .modal-input:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(30,142,62,.12)}
+    .modal-textarea{width:100%;padding:11px 14px;border:2px solid var(--gc-border);border-radius:10px;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text);background:var(--gc-bg);outline:none;margin-bottom:14px;resize:vertical;min-height:80px;transition:all var(--transition)}
+    .modal-textarea:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(30,142,62,.12)}
+    .modal-btn{padding:11px 24px;border-radius:10px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all var(--transition)}
+    .modal-btn:hover{opacity:.9;transform:translateY(-1px)}
+    .modal-btn-sec{padding:11px 24px;border-radius:10px;border:2px solid var(--gc-border);background:transparent;color:var(--gc-text);font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:all var(--transition);margin-right:8px}
+    .modal-btn-sec:hover{background:var(--gc-bg)}
     .modal-success{color:var(--gc-green);font-size:.88rem;margin-top:8px;display:none}
-    /* CHANGELOG */
-    .cl-entry{border-left:3px solid var(--gc-green);padding:0 0 20px 16px;margin-bottom:4px;position:relative}
+
+    /* ═══ CHANGELOG ═══ */
+    .cl-entry{border-left:3px solid var(--gc-green);padding:0 0 22px 18px;margin-bottom:4px;position:relative}
     .cl-entry:last-child{border-left-color:transparent;padding-bottom:0}
-    .cl-dot{width:12px;height:12px;border-radius:50%;background:var(--gc-green);position:absolute;left:-7.5px;top:2px}
+    .cl-dot{width:13px;height:13px;border-radius:50%;background:var(--gc-green);position:absolute;left:-8px;top:2px;box-shadow:0 0 0 3px var(--gc-white)}
     .cl-version{font-family:'Google Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--gc-green);margin-bottom:3px}
     .cl-date{color:var(--gc-muted);font-size:.78rem;margin-bottom:8px}
     .cl-items{list-style:none;padding:0}
-    .cl-items li{font-size:.85rem;color:var(--gc-text);padding:2px 0;display:flex;gap:6px}
+    .cl-items li{font-size:.85rem;color:var(--gc-text);padding:3px 0;display:flex;gap:7px;line-height:1.4}
     .cl-items li::before{content:'•';color:var(--gc-green);flex-shrink:0}
 
-    /* ADMIN */
+    /* ═══ ADMIN PANEL ═══ */
     #adminPanel{display:none;min-height:100vh;background:var(--gc-bg)}
     .admin-bar{background:var(--gc-header);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .admin-bar-title{font-family:'Google Sans',sans-serif;font-size:1.2rem;font-weight:700}
     .admin-bar-btns{display:flex;gap:10px}
-    .admin-bar-btn{padding:8px 18px;border-radius:6px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:background .3s}
+    .admin-bar-btn{padding:8px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:background var(--transition)}
     .admin-bar-btn:hover{background:rgba(255,255,255,.15)}
     .admin-bar-btn.danger{border-color:rgba(242,139,130,.5);color:#f28b82}
     .admin-inner{width:min(1000px,calc(100% - 32px));margin:0 auto;padding:28px 0 56px}
     .admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
-    .stat-card{background:#fff;border-radius:12px;padding:20px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);text-align:center}
-    .stat-num{font-family:'Google Sans',sans-serif;font-size:2.4rem;font-weight:700;color:var(--gc-green)}
+    .stat-card{background:var(--gc-white);border-radius:14px;padding:22px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);text-align:center;transition:transform var(--transition)}
+    .stat-card:hover{transform:translateY(-2px)}
+    .stat-num{font-family:'Google Sans',sans-serif;font-size:2.6rem;font-weight:700;color:var(--gc-green)}
     .stat-label{color:var(--gc-muted);font-size:.82rem;margin-top:4px}
-    .admin-section{background:#fff;border-radius:12px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);overflow:hidden}
-    .admin-section-header{padding:16px 20px;border-bottom:1px solid var(--gc-border);font-family:'Google Sans',sans-serif;font-weight:700}
+    .admin-section{background:var(--gc-white);border-radius:14px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);overflow:hidden;margin-bottom:20px}
+    .admin-section-header{padding:16px 20px;border-bottom:1px solid var(--gc-border);font-family:'Google Sans',sans-serif;font-weight:700;color:var(--gc-text)}
     .log-table{width:100%;border-collapse:collapse;font-size:.88rem}
     .log-table th{text-align:left;padding:10px 16px;color:var(--gc-muted);font-weight:500;border-bottom:1px solid var(--gc-border);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
-    .log-table td{padding:12px 16px;border-bottom:1px solid #f1f3f4;vertical-align:top}
+    .log-table td{padding:12px 16px;border-bottom:1px solid var(--gc-border);vertical-align:top;color:var(--gc-text)}
     .log-table tr:last-child td{border-bottom:none}
-    .log-table tr:hover td{background:#f8f9fa}
+    .log-table tr:hover td{background:var(--gc-bg)}
     .log-time{color:var(--gc-muted);font-size:.82rem}
-    .log-game-tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;background:#e8f0fe;color:#1a73e8;font-size:.78rem;margin:2px}
+    .log-game-tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;background:var(--gc-green3);color:var(--gc-green);font-size:.78rem;margin:2px}
     .no-logs{text-align:center;color:var(--gc-muted);padding:40px;font-size:.95rem}
 
-    /* GAME IFRAME */
+    /* ═══ SETTINGS PANEL ═══ */
+    #settingsModal .modal-card{width:min(540px,calc(100% - 32px))}
+    .settings-section{margin-bottom:28px}
+    .settings-section-title{font-family:'Google Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--gc-text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gc-border)}
+    .theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .theme-btn{border:2px solid var(--gc-border);border-radius:12px;padding:14px 10px;cursor:pointer;text-align:center;transition:all var(--transition);background:var(--gc-bg);position:relative;overflow:hidden}
+    .theme-btn:hover{transform:translateY(-2px);border-color:var(--gc-green)}
+    .theme-btn.active{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(30,142,62,.2)}
+    .theme-btn-swatch{width:32px;height:32px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .theme-btn-label{font-family:'Google Sans',sans-serif;font-size:.8rem;font-weight:600;color:var(--gc-text)}
+    .theme-btn-check{position:absolute;top:6px;right:8px;color:var(--gc-green);font-size:.85rem;display:none}
+    .theme-btn.active .theme-btn-check{display:block}
+    .settings-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gc-border);gap:12px}
+    .settings-row:last-child{border-bottom:none}
+    .settings-row-label{font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:600;color:var(--gc-text)}
+    .settings-row-sub{font-size:.78rem;color:var(--gc-muted);margin-top:2px}
+    .settings-key-input{padding:8px 14px;border:2px solid var(--gc-border);border-radius:8px;font-family:'Roboto Mono',monospace;font-size:.9rem;color:var(--gc-text);background:var(--gc-bg);outline:none;width:160px;transition:border-color var(--transition)}
+    .settings-key-input:focus{border-color:var(--gc-green)}
+    .settings-url-input{padding:8px 14px;border:2px solid var(--gc-border);border-radius:8px;font-family:'Roboto',sans-serif;font-size:.85rem;color:var(--gc-text);background:var(--gc-bg);outline:none;flex:1;transition:border-color var(--transition)}
+    .settings-url-input:focus{border-color:var(--gc-green)}
+    .settings-save-btn{padding:9px 20px;border-radius:8px;border:none;background:var(--gc-green);color:#fff;font-family:'Google Sans',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all var(--transition);white-space:nowrap}
+    .settings-save-btn:hover{opacity:.9}
+
+    /* ═══ GAME OVERLAY ═══ */
     #gameOverlay{display:none;position:fixed;inset:0;z-index:8880;background:#000;flex-direction:column}
     #gameOverlay.active{display:flex}
-    .game-topbar{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:48px;background:var(--gc-header);gap:12px;flex-shrink:0}
-    .game-topbar-title{font-family:'Google Sans',sans-serif;font-size:1rem;font-weight:700;color:#fff}
-    .game-close-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:background .3s}
+    .game-topbar{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:50px;background:var(--gc-header);gap:12px;flex-shrink:0}
+    .game-topbar-title{font-family:'Google Sans',sans-serif;font-size:1rem;font-weight:700;color:#fff;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .game-close-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:background var(--transition);white-space:nowrap}
     .game-close-btn:hover{background:rgba(255,255,255,.15)}
     #gameFrame{flex:1;width:100%;border:none;display:block}
 
-    /* MAIN */
-    #mainContent{display:none;min-height:100vh}
-    .gc-header{background:var(--gc-header);color:#fff;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 2px 4px rgba(0,0,0,.2);position:sticky;top:0;z-index:100}
-    .gc-header-left{display:flex;align-items:center;gap:12px}
-    .gc-header-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;font-family:'Google Sans',sans-serif}
-    .gc-header-title{font-family:'Google Sans',sans-serif;font-size:1.25rem;font-weight:700}
-    .gc-header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .gc-discord-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.85rem;font-weight:500;text-decoration:none;transition:background .15s;white-space:nowrap}
+    /* GAME LOADING SCREEN */
+    #gameLoader{position:absolute;inset:0;top:50px;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:10;transition:opacity .5s ease}
+    #gameLoader.hidden{opacity:0;pointer-events:none}
+    .loader-spinner{width:52px;height:52px;border:4px solid rgba(255,255,255,.1);border-top-color:var(--gc-green);border-radius:50%;animation:spin .8s linear infinite}
+    .loader-text{color:rgba(255,255,255,.7);font-family:'Google Sans',sans-serif;font-size:.95rem;letter-spacing:.02em}
+    .loader-game-name{color:#fff;font-family:'Google Sans',sans-serif;font-size:1.1rem;font-weight:700}
+
+    /* PROGRESS SAVE WARNING */
+    #progressWarning{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(217,48,37,.95);color:#fff;padding:12px 24px;border-radius:12px;font-family:'Google Sans',sans-serif;font-size:.88rem;font-weight:600;z-index:9999;display:none;animation:gcPop .3s ease;box-shadow:0 4px 20px rgba(0,0,0,.4);text-align:center;max-width:380px;white-space:nowrap}
+
+    /* ═══ MAIN HUB ═══ */
+    #mainContent{display:none;min-height:100vh;background:var(--gc-bg);transition:background var(--transition)}
+    .gc-header{background:var(--gc-header);color:#fff;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.25);position:sticky;top:0;z-index:100;transition:background var(--transition)}
+    .gc-header-left{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .gc-header-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;font-family:'Google Sans',sans-serif;flex-shrink:0}
+    .gc-header-title{font-family:'Google Sans',sans-serif;font-size:1.2rem;font-weight:700;white-space:nowrap}
+    .gc-header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .gc-discord-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;text-decoration:none;transition:background var(--transition);white-space:nowrap}
     .gc-discord-btn:hover{background:rgba(255,255,255,.25)}
-    .discord-icon{width:15px;height:15px}
-    .gc-badge{padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.15);color:#fff;font-size:.82rem;font-weight:500;white-space:nowrap}
-    .panic-pill{padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.75rem;font-weight:500;white-space:nowrap;font-family:'Roboto',sans-serif}
-    .gc-banner{background:linear-gradient(135deg,#0f9d58,#1e8e3e);color:#fff;padding:28px 24px;position:relative;overflow:hidden}
-    .gc-banner::after{content:'';position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
-    .gc-banner-inner{width:min(1100px,100%);margin:0 auto;position:relative;z-index:1}
-    .gc-banner-title{font-family:'Google Sans',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:4px}
-    .gc-banner-sub{font-size:.9rem;opacity:.85}
+    .discord-icon{width:14px;height:14px}
+    .gc-badge{padding:6px 12px;border-radius:20px;background:rgba(255,255,255,.15);color:#fff;font-size:.78rem;font-weight:500;white-space:nowrap}
+    .panic-pill{padding:6px 12px;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.72rem;font-weight:500;white-space:nowrap;font-family:'Roboto',sans-serif;cursor:pointer;transition:background var(--transition)}
+    .panic-pill:hover{background:rgba(255,255,255,.2)}
+    .gc-hdr-btn{padding:6px 13px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background var(--transition)}
+    .gc-hdr-btn:hover{background:rgba(255,255,255,.28)}
+    .settings-hdr-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all var(--transition);flex-shrink:0}
+    .settings-hdr-btn:hover{background:rgba(255,255,255,.3);transform:rotate(30deg)}
+
+    /* BANNER */
+    .gc-banner{background:var(--gc-banner-grad);color:#fff;padding:28px 24px;position:relative;overflow:hidden;transition:background var(--transition)}
+    .gc-banner::before{content:'';position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.05)}
+    .gc-banner::after{content:'';position:absolute;right:60px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04)}
+    .gc-banner-inner{width:min(1100px,100%);margin:0 auto;position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .gc-banner-left{}
+    .gc-banner-title{font-family:'Google Sans',sans-serif;font-size:1.9rem;font-weight:700;margin-bottom:4px}
+    .gc-banner-sub{font-size:.88rem;opacity:.85}
+    .gc-banner-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .banner-action-btn{padding:10px 20px;border-radius:24px;border:2px solid rgba(255,255,255,.6);background:rgba(255,255,255,.15);color:#fff;font-family:'Google Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all var(--transition);white-space:nowrap;backdrop-filter:blur(4px)}
+    .banner-action-btn:hover{background:rgba(255,255,255,.3);transform:translateY(-1px)}
 
     /* TABS */
-    .gc-tabs{background:#fff;border-bottom:1px solid var(--gc-border);padding:0 24px;display:flex;gap:0}
-    .gc-tab{padding:14px 20px;font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:500;color:var(--gc-muted);cursor:pointer;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:7px;white-space:nowrap}
-    .gc-tab:hover{color:var(--gc-text);background:#f8f9fa}
+    .gc-tabs{background:var(--gc-tab-bg);border-bottom:2px solid var(--gc-border);padding:0 20px;display:flex;gap:0;overflow-x:auto;transition:background var(--transition)}
+    .gc-tab{padding:13px 18px;font-family:'Google Sans',sans-serif;font-size:.88rem;font-weight:500;color:var(--gc-muted);cursor:pointer;border-bottom:3px solid transparent;transition:all var(--transition);display:flex;align-items:center;gap:6px;white-space:nowrap;user-select:none}
+    .gc-tab:hover{color:var(--gc-text);background:var(--gc-bg)}
     .gc-tab.active{color:var(--gc-green);border-bottom-color:var(--gc-green)}
-    .gc-tab .tab-count{background:var(--gc-green3);color:var(--gc-green);padding:1px 7px;border-radius:10px;font-size:.75rem;font-weight:700}
+    .gc-tab .tab-count{background:var(--gc-green3);color:var(--gc-green);padding:1px 7px;border-radius:10px;font-size:.72rem;font-weight:700}
 
     /* SEARCH */
-    .gc-searchbar{background:#fff;border-bottom:1px solid var(--gc-border);padding:12px 24px}
+    .gc-searchbar{background:var(--gc-tab-bg);border-bottom:1px solid var(--gc-border);padding:12px 20px;transition:background var(--transition)}
     .gc-searchbar-inner{width:min(1100px,100%);margin:0 auto;display:flex;gap:12px;align-items:center}
-    .gc-search{flex:1 1 280px;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;border:1px solid var(--gc-border);background:#f1f3f4;transition:background .3s,border-color .3s}
-    .gc-search:focus-within{background:#fff;border-color:var(--gc-green);box-shadow:0 0 0 2px rgba(30,142,62,.15)}
+    .gc-search{flex:1 1 280px;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;border:2px solid var(--gc-border);background:var(--gc-search-bg);transition:all var(--transition)}
+    .gc-search:focus-within{background:var(--gc-white);border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(30,142,62,.12)}
     .gc-search-icon{color:var(--gc-muted);font-size:.9rem;flex-shrink:0}
     .gc-search input{width:100%;border:none;outline:none;background:transparent;font-family:'Roboto',sans-serif;font-size:.95rem;color:var(--gc-text)}
-    .gc-search input::placeholder{color:#9aa0a6}
+    .gc-search input::placeholder{color:var(--gc-muted)}
     .gc-count{color:var(--gc-muted);font-size:.85rem;white-space:nowrap}
 
+    /* RECENTLY PLAYED SECTION */
+    .recently-section{width:min(1100px,calc(100% - 40px));margin:20px auto 0;animation:gcFadeUp .4s ease both}
+    .recently-header{font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:700;color:var(--gc-muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;letter-spacing:.02em;text-transform:uppercase;font-size:.78rem}
+    .recently-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+    .recently-row::-webkit-scrollbar{height:4px}
+    .recently-row::-webkit-scrollbar-track{background:transparent}
+    .recently-row::-webkit-scrollbar-thumb{background:var(--gc-border);border-radius:2px}
+    .recent-chip{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:24px;background:var(--gc-white);border:1px solid var(--gc-border);cursor:pointer;white-space:nowrap;transition:all var(--transition);box-shadow:var(--gc-shadow);flex-shrink:0}
+    .recent-chip:hover{border-color:var(--gc-green);transform:translateY(-1px);box-shadow:var(--gc-shadow2)}
+    .recent-chip-icon{font-size:1.1rem}
+    .recent-chip-name{font-family:'Google Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gc-text)}
+
     /* GRID */
-    .gc-main{width:min(1100px,calc(100% - 32px));margin:20px auto 56px}
-    .gc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+    .gc-main{width:min(1100px,calc(100% - 40px));margin:20px auto 56px}
+    .gc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
     .gc-empty{grid-column:1/-1;text-align:center;padding:56px 20px;color:var(--gc-muted)}
     .gc-empty .e-icon{font-size:3rem;margin-bottom:12px}
     .gc-empty p{font-size:.95rem}
 
     /* CARD */
-    .game-card{background:#fff;border-radius:8px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);overflow:hidden;cursor:pointer;transition:box-shadow .3s,transform .3s;position:relative;display:flex;flex-direction:column;animation:gcFadeUp .35s ease both}
-    @keyframes gcFadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-    .game-card:hover{box-shadow:var(--gc-shadow2);transform:translateY(-2px);transition:box-shadow .3s,transform .3s}
-    .game-card-banner{height:96px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;position:relative;background:linear-gradient(135deg,#e6f4ea,#c8f0d6)}
-    .play-overlay{position:absolute;inset:0;background:rgba(15,157,88,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+    .game-card{background:var(--gc-white);border-radius:12px;border:1px solid var(--gc-border);box-shadow:var(--gc-shadow);overflow:hidden;cursor:pointer;transition:box-shadow var(--transition),transform var(--transition),border-color var(--transition);position:relative;display:flex;flex-direction:column;animation:gcFadeUp .4s ease both}
+    .game-card:hover{box-shadow:var(--gc-shadow2);transform:translateY(-3px);border-color:var(--gc-green)}
+    .game-card-banner{height:96px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;position:relative;background:var(--gc-card-banner);overflow:hidden}
+    .play-overlay{position:absolute;inset:0;background:var(--gc-play-overlay);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--transition)}
     .game-card:hover .play-overlay{opacity:1}
-    .play-btn-circle{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-    .play-btn-triangle{width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid var(--gc-green);margin-left:4px}
-    .fav-btn{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.9);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:5;transition:background .15s,transform .15s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-    .fav-btn:hover{background:#fff;transform:scale(1.15)}
+    .play-btn-circle{width:54px;height:54px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);transform:scale(.85);transition:transform var(--transition)}
+    .game-card:hover .play-btn-circle{transform:scale(1)}
+    .play-btn-triangle{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:20px solid var(--gc-green);margin-left:4px}
+    .fav-btn{position:absolute;top:7px;right:7px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:5;transition:all var(--transition);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+    .fav-btn:hover{background:#fff;transform:scale(1.2)}
     .fav-btn.active{color:#e8710a}
-    .game-card-body{padding:12px 14px 14px;flex:1}
-    .game-card-tag{display:inline-flex;align-items:center;padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
+    .game-card-body{padding:11px 13px 13px;flex:1}
+    .game-card-tag{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px}
     .tag-new{background:var(--gc-green3);color:var(--gc-green)}
     .tag-classic{background:#fce8e6;color:#c5221f}
-    .game-name{font-family:'Google Sans',sans-serif;font-size:.92rem;font-weight:700;color:var(--gc-text);line-height:1.3}
+    .game-name{font-family:'Google Sans',sans-serif;font-size:.9rem;font-weight:700;color:var(--gc-text);line-height:1.3}
 
     .gc-footer{text-align:center;color:var(--gc-muted);font-size:.82rem;padding-bottom:8px}
-    .gc-hdr-btn{padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .3s}
-    .gc-hdr-btn:hover{background:rgba(255,255,255,.28)}
     .hidden{display:none !important}
-    @media(max-width:600px){.gc-banner-title{font-size:1.3rem}.game-card-banner{height:76px}}
+
+    /* NEON SPECIAL EFFECTS */
+    body.theme-neon .game-card:hover{box-shadow:0 0 20px rgba(0,255,136,.3),0 8px 24px rgba(0,0,0,.6)}
+    body.theme-neon .gc-header-title{animation:neonFlicker 8s infinite}
+    body.theme-neon .gc-banner-title{text-shadow:0 0 20px rgba(0,255,136,.6)}
+    body.theme-neon .gc-search:focus-within{box-shadow:0 0 0 3px rgba(0,255,136,.2),0 0 20px rgba(0,255,136,.1)}
+
+    @media(max-width:640px){
+      .gc-banner-title{font-size:1.3rem}
+      .game-card-banner{height:78px}
+      .gc-header-right{gap:6px}
+      .gc-badge{display:none}
+      .theme-grid{grid-template-columns:repeat(2,1fr)}
+    }
   </style>
 </head>
 <body>
 
-<!-- ══ PASSWORD CHANGED POPUP ══ -->
-<div class="modal-overlay show" id="pwChangedPopup" style="z-index:9999999">
-  <div class="modal-card" style="text-align:center;max-width:420px">
-    <div style="font-size:2.5rem;margin-bottom:14px">🤫</div>
-    <div class="modal-title" style="justify-content:center;font-size:1.25rem;margin-bottom:10px">Password Changed</div>
-    <p style="color:#5f6368;font-size:.92rem;line-height:1.7;margin-bottom:24px">
-      The password has been updated because too many people had access to the website.<br><br>
-      <strong>If I gave you the website — don't tell anybody.</strong> 🤫
-    </p>
-    <button class="modal-btn" id="pwChangedOk" style="width:100%">Got it 👍</button>
-  </div>
-</div>
+<!-- ═══ TOAST CONTAINER ═══ -->
+<div id="toastContainer"></div>
 
-<!-- ══ COOKIE WALL (required) ══ -->
+<!-- ═══ COOKIE WALL ═══ -->
 <div id="cookieWall">
   <div class="cookie-card">
     <div class="cookie-icon">🍪</div>
@@ -214,7 +372,7 @@
   </div>
 </div>
 
-<!-- ══ PASSWORD ══ -->
+<!-- ═══ PASSWORD ═══ -->
 <div id="passwordOverlay" style="display:none">
   <div class="pw-card" id="pwCard">
     <div class="pw-logo">
@@ -232,18 +390,17 @@
   </div>
 </div>
 
-<!-- ══ WELCOME POPUP ══ -->
+<!-- ═══ WELCOME POPUP ═══ -->
 <div id="welcomePopup">
   <div class="welcome-card">
-    <div class="welcome-emoji">🎉</div>
-    <div class="welcome-title">You're in!</div>
-    <div class="welcome-msg">thank you for playing my game guys!</div>
-    <button class="welcome-continue" id="welcomeContinue">Continue →</button>
+    <div class="welcome-emoji">😂</div>
+    <div class="welcome-title">We are so back</div>
+    <div class="welcome-msg">the school blocked my website but i really dont care 😂</div>
+    <button class="welcome-continue" id="welcomeContinue">Let's go →</button>
   </div>
 </div>
 
-
-<!-- ══ REQUEST MODAL ══ -->
+<!-- ═══ REQUEST MODAL ═══ -->
 <div class="modal-overlay" id="requestModal">
   <div class="modal-card">
     <button class="modal-close" id="requestClose">✕</button>
@@ -265,7 +422,7 @@
   </div>
 </div>
 
-<!-- ══ CHANGELOG MODAL ══ -->
+<!-- ═══ CHANGELOG MODAL ═══ -->
 <div class="modal-overlay" id="changelogModal">
   <div class="modal-card">
     <button class="modal-close" id="changelogClose">✕</button>
@@ -275,11 +432,30 @@
 
       <div class="cl-entry">
         <div class="cl-dot"></div>
-        <div class="cl-version">v1.9 — Latest</div>
+        <div class="cl-version">v2.0 — Latest 🎉</div>
+        <div class="cl-date">May 2026</div>
+        <ul class="cl-items">
+          <li>🎨 Theme system — Neon, Dark, Sunset, Ocean, Candy + default</li>
+          <li>⚙️ Settings panel — customize panic key, panic URL, and themes</li>
+          <li>🕹️ Recently played row on homepage</li>
+          <li>🎲 Random game button — picks a random game instantly</li>
+          <li>⏳ Smooth game loading screen with spinner (3 second reveal)</li>
+          <li>🔴 Toast notifications — red slide-in popups for alerts</li>
+          <li>⚠️ Progress warning popup when opening games</li>
+          <li>🚀 Better animations everywhere — smoother, bouncier, faster</li>
+          <li>🗑️ Removed "Password Changed" popup</li>
+          <li>📝 Welcome message updated — we are so back 😂</li>
+          <li>🎮 New games added (see screenshot batch)</li>
+          <li>✨ Game names now display without the "cl" prefix</li>
+        </ul>
+      </div>
+
+      <div class="cl-entry">
+        <div class="cl-dot"></div>
+        <div class="cl-version">v1.9</div>
         <div class="cl-date">May 13, 2026</div>
         <ul class="cl-items">
           <li>🤫 Password changed — too many people had the old one</li>
-          <li>Password changed popup added on site load</li>
           <li>Request button now opens a Google Form instead of a modal</li>
           <li>All animations slowed down for a smoother feel</li>
         </ul>
@@ -304,84 +480,10 @@
         <ul class="cl-items">
           <li>Added 55+ new games (Atari Adventure, FNAF, Half Life, Granny, Minecraft PE and more)</li>
           <li>Google Classroom theme redesign</li>
-          <li>Play button hover effect on game cards</li>
           <li>Favorites system with its own tab (saved to cookies)</li>
           <li>Panic key (\) added — hides the site</li>
           <li>Required cookie consent wall</li>
           <li>Admin panel with visitor and game tracking</li>
-          <li>Ctrl×3 secret shortcut for Friends page</li>
-        </ul>
-      </div>
-
-      <div class="cl-entry">
-        <div class="cl-dot"></div>
-        <div class="cl-version">v1.6</div>
-        <div class="cl-date">May 2026</div>
-        <ul class="cl-items">
-          <li>Added 37 new games (Blackjack, Bloons, Duck Life 2, Mario Kart 64, Quake 3 and more)</li>
-          <li>Auto-login system — remembers your password between visits</li>
-          <li>Checking screen animation when you return to the site</li>
-          <li>Discord webhook integration for visitor tracking</li>
-        </ul>
-      </div>
-
-      <div class="cl-entry">
-        <div class="cl-dot"></div>
-        <div class="cl-version">v1.5</div>
-        <div class="cl-date">April 2026</div>
-        <ul class="cl-items">
-          <li>Added 24 new games (CL1, 1v1.LOL, Golf Battle, Half Life, Happy Room and more)</li>
-          <li>Welcome popup: "thank you for playing my game guys!"</li>
-          <li>Password system overhauled — secure admin login (eduu)</li>
-          <li>Admin panel: see who visits and what games they play</li>
-        </ul>
-      </div>
-
-      <div class="cl-entry">
-        <div class="cl-dot"></div>
-        <div class="cl-version">v1.4</div>
-        <div class="cl-date">April 2026</div>
-        <ul class="cl-items">
-          <li>Added 40 new games (Among Us, Angry Birds, Run 3, Fruit Ninja and more)</li>
-          <li>Search bar added</li>
-          <li>Game count display</li>
-          <li>Favicon updated to custom logo</li>
-        </ul>
-      </div>
-
-      <div class="cl-entry">
-        <div class="cl-dot"></div>
-        <div class="cl-version">v1.3</div>
-        <div class="cl-date">April 2026</div>
-        <ul class="cl-items">
-          <li>Password gate added to protect the site</li>
-          <li>Games now open inside an iframe (prevents URL bypass)</li>
-          <li>Added Block Blast, Escape The Roads, Geometry Dash World and more</li>
-          <li>Site renamed to Totally Classroom</li>
-        </ul>
-      </div>
-
-      <div class="cl-entry">
-        <div class="cl-dot"></div>
-        <div class="cl-version">v1.2</div>
-        <div class="cl-date">April 2026</div>
-        <ul class="cl-items">
-          <li>Added Flappy Bird, Subway Surfers, Cookie Clicker, Five Nights</li>
-          <li>Fixed HTML structure — all cards now inside the grid</li>
-          <li>Game count now correctly shows all games</li>
-          <li>Discord button added</li>
-        </ul>
-      </div>
-
-      <div class="cl-entry">
-        <div class="cl-dot"></div>
-        <div class="cl-version">v1.1</div>
-        <div class="cl-date">April 2026</div>
-        <ul class="cl-items">
-          <li>Dark gold / luxury theme applied</li>
-          <li>Cards redesigned with hover effects</li>
-          <li>Search and filter system</li>
-          <li>Made by someone in lowellmiddleschool</li>
         </ul>
       </div>
 
@@ -400,10 +502,77 @@
   </div>
 </div>
 
-<!-- ══ ADMIN PANEL ══ -->
+<!-- ═══ SETTINGS MODAL ═══ -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal-card">
+    <button class="modal-close" id="settingsClose">✕</button>
+    <div class="modal-title">⚙️ Settings</div>
+    <div class="modal-sub">Customize your Totally Classroom experience.</div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">🎨 Theme</div>
+      <div class="theme-grid">
+        <button class="theme-btn active" data-theme="default" onclick="setTheme('default',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#0f9d58,#1e8e3e)">🌿</div>
+          <div class="theme-btn-label">Default</div>
+        </button>
+        <button class="theme-btn" data-theme="neon" onclick="setTheme('neon',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#0a0a0f,#00ff88);box-shadow:0 0 12px rgba(0,255,136,.5)">⚡</div>
+          <div class="theme-btn-label">Neon</div>
+        </button>
+        <button class="theme-btn" data-theme="dark" onclick="setTheme('dark',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#202124,#8ab4f8)">🌙</div>
+          <div class="theme-btn-label">Dark</div>
+        </button>
+        <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#ff6b35,#ff8c42)">🌅</div>
+          <div class="theme-btn-label">Sunset</div>
+        </button>
+        <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#03045e,#00b4d8)">🌊</div>
+          <div class="theme-btn-label">Ocean</div>
+        </button>
+        <button class="theme-btn" data-theme="candy" onclick="setTheme('candy',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#ff4fab,#e040a0)">🍭</div>
+          <div class="theme-btn-label">Candy</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">🔑 Panic Key</div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">Panic Keybind</div>
+          <div class="settings-row-sub">Press the key you want to use as your panic key</div>
+        </div>
+        <input class="settings-key-input" id="panicKeyInput" placeholder="Press a key…" readonly/>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">Panic URL</div>
+          <div class="settings-row-sub">Where to redirect when panic key is pressed</div>
+        </div>
+        <div style="display:flex;gap:8px;flex:1;max-width:280px">
+          <input class="settings-url-input" id="panicUrlInput" placeholder="https://classroom.google.com"/>
+          <button class="settings-save-btn" onclick="savePanicSettings()">Save</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ ADMIN PANEL ═══ -->
 <div id="adminPanel">
   <div class="admin-bar">
-    <div class="admin-bar-title">🛡️ Admin Panel — Totally Classroom</div>
+    <div class="admin-bar-title">🛡️ Admin Panel — Totally Classroom v2.0</div>
     <div class="admin-bar-btns">
       <button class="admin-bar-btn danger" id="adminClearBtn">🗑️ Clear Logs</button>
       <button class="admin-bar-btn" id="adminLogoutBtn">← Back to Hub</button>
@@ -426,16 +595,24 @@
   </div>
 </div>
 
-<!-- ══ GAME IFRAME ══ -->
+<!-- ═══ GAME OVERLAY ═══ -->
 <div id="gameOverlay">
   <div class="game-topbar">
     <span class="game-topbar-title" id="gameTitle">Game</span>
     <button class="game-close-btn" id="closeGameBtn">✕ Close</button>
   </div>
+  <div id="gameLoader">
+    <div class="loader-game-name" id="loaderGameName"></div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading game…</div>
+  </div>
   <iframe id="gameFrame" src="" allowfullscreen></iframe>
 </div>
 
-<!-- ══ MAIN HUB ══ -->
+<!-- PROGRESS SAVE WARNING -->
+<div id="progressWarning">⚠️ Attention: your progress might not be saved.</div>
+
+<!-- ═══ MAIN HUB ═══ -->
 <div id="mainContent">
   <div class="gc-header">
     <div class="gc-header-left">
@@ -448,21 +625,31 @@
         Discord
       </a>
       <span class="gc-badge">lowellmiddleschool</span>
-      <button class="gc-hdr-btn" id="requestBtn" title="Request a game">📩 Request</button>
-      <button class="gc-hdr-btn" id="changelogBtn" title="Update history">📋 Updates</button>
-      <span class="panic-pill">\ = panic (Google Classroom)</span>
+      <button class="gc-hdr-btn" id="requestBtn">📩 Request</button>
+      <button class="gc-hdr-btn" id="changelogBtn">📋 Updates</button>
+      <button class="settings-hdr-btn" id="settingsBtn" title="Settings">⚙️</button>
+      <span class="panic-pill" id="panicPill">\ = panic</span>
     </div>
   </div>
+
   <div class="gc-banner">
     <div class="gc-banner-inner">
-      <div class="gc-banner-title">🎮 Game Hub</div>
-      <div class="gc-banner-sub">Pick a game and start playing. Press <strong>\</strong> anytime to hide.</div>
+      <div class="gc-banner-left">
+        <div class="gc-banner-title">🎮 Game Hub v2.0</div>
+        <div class="gc-banner-sub">Pick a game and start playing. Press <strong id="panicKeyLabel">\</strong> anytime to hide.</div>
+      </div>
+      <div class="gc-banner-actions">
+        <button class="banner-action-btn" id="randomGameBtn">🎲 Random Game</button>
+      </div>
     </div>
   </div>
+
   <div class="gc-tabs">
     <div class="gc-tab active" id="tabAll" onclick="switchTab('all')">🎮 All Games <span class="tab-count" id="countAll">0</span></div>
     <div class="gc-tab" id="tabFav" onclick="switchTab('fav')">⭐ Favorites <span class="tab-count" id="countFav">0</span></div>
+    <div class="gc-tab" id="tabRecent" onclick="switchTab('recent')">🕐 Recent <span class="tab-count" id="countRecent">0</span></div>
   </div>
+
   <div class="gc-searchbar">
     <div class="gc-searchbar-inner">
       <div class="gc-search">
@@ -472,6 +659,12 @@
       <span class="gc-count" id="gameCount"></span>
     </div>
   </div>
+
+  <div class="recently-section" id="recentlySection" style="display:none">
+    <div class="recently-header">⏱ Recently Played</div>
+    <div class="recently-row" id="recentlyRow"></div>
+  </div>
+
   <div class="gc-main">
     <div class="gc-grid" id="gameGrid"></div>
     <div class="gc-footer" style="margin-top:28px">Made with ♥ by someone in lowellmiddleschool</div>
@@ -486,24 +679,81 @@ const STORAGE_KEY='tc_auth';
 const LOGS_KEY='tc_logs';
 const COOKIE_KEY='tc_cookies';
 const FAV_KEY='tc_favs';
-
+const RECENT_KEY='tc_recent';
+const THEME_KEY='tc_theme';
+const PANIC_KEY_KEY='tc_panickey';
+const PANIC_URL_KEY='tc_panicurl';
 
 let currentSession=null;
 let currentTab='all';
 let ctrlCount=0,ctrlTimer=null;
+let panicKey=localStorage.getItem(PANIC_KEY_KEY)||'\\';
+let panicUrl=localStorage.getItem(PANIC_URL_KEY)||'https://classroom.google.com';
 
-// Discord webhook removed — using Google Sheets instead
+/* ═══ STORAGE HELPERS ═══ */
 function getLogs(){try{return JSON.parse(localStorage.getItem(LOGS_KEY))||[];}catch{return[];}}
 function saveLogs(l){localStorage.setItem(LOGS_KEY,JSON.stringify(l));}
 function getFavs(){try{return JSON.parse(localStorage.getItem(FAV_KEY))||[];}catch{return[];}}
 function saveFavs(f){localStorage.setItem(FAV_KEY,JSON.stringify(f));}
 function toggleFav(file){const f=getFavs();const i=f.indexOf(file);if(i===-1)f.push(file);else f.splice(i,1);saveFavs(f);return i===-1;}
-function isFav(file){return getFavs().includes(file);}
+function getRecent(){try{return JSON.parse(localStorage.getItem(RECENT_KEY))||[];}catch{return[];}}
+function addRecent(file,name,icon){
+  let r=getRecent();
+  r=r.filter(x=>x.file!==file);
+  r.unshift({file,name,icon});
+  if(r.length>8)r=r.slice(0,8);
+  localStorage.setItem(RECENT_KEY,JSON.stringify(r));
+}
 
 function logVisitor(){const logs=getLogs();const entry={time:new Date().toISOString(),games:[]};logs.unshift(entry);saveLogs(logs);currentSession=entry;}
 function logGame(name){if(!currentSession)return;const logs=getLogs();const e=logs.find(l=>l.time===currentSession.time);if(e&&!e.games.includes(name)){e.games.push(name);saveLogs(logs);}}
 
-// ══ COOKIE WALL ══
+/* ═══ TOAST SYSTEM ═══ */
+function showToast(msg,type='',icon='📢',duration=5000){
+  const container=document.getElementById('toastContainer');
+  const toast=document.createElement('div');
+  toast.className='toast'+(type?' toast-'+type:'');
+  toast.innerHTML='<span class="toast-icon">'+icon+'</span><span class="toast-msg">'+msg+'</span>';
+  toast.onclick=()=>dismissToast(toast);
+  container.appendChild(toast);
+  setTimeout(()=>dismissToast(toast),duration);
+  return toast;
+}
+function dismissToast(t){
+  t.classList.add('toast-out');
+  setTimeout(()=>t.remove(),350);
+}
+
+/* ═══ THEME ═══ */
+function setTheme(theme,btn){
+  document.body.className=theme==='default'?'':'theme-'+theme;
+  localStorage.setItem(THEME_KEY,theme);
+  document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else{const b=document.querySelector('.theme-btn[data-theme="'+theme+'"]');if(b)b.classList.add('active');}
+}
+function loadTheme(){
+  const t=localStorage.getItem(THEME_KEY)||'default';
+  setTheme(t,null);
+}
+
+/* ═══ PANIC KEY SETTINGS ═══ */
+function updatePanicPill(){
+  const label=panicKey==='\\'?'\\':panicKey;
+  document.getElementById('panicPill').textContent=label+' = panic';
+  document.getElementById('panicKeyLabel').textContent=label;
+}
+function savePanicSettings(){
+  const url=document.getElementById('panicUrlInput').value.trim();
+  if(url)panicUrl=url;
+  localStorage.setItem(PANIC_KEY_KEY,panicKey);
+  localStorage.setItem(PANIC_URL_KEY,panicUrl);
+  updatePanicPill();
+  showToast('Settings saved!','','✅',3000);
+  document.getElementById('settingsModal').classList.remove('show');
+}
+
+/* ═══ COOKIE WALL ═══ */
 const cookieWall=document.getElementById('cookieWall');
 document.getElementById('cookieAcceptBtn').addEventListener('click',()=>{
   localStorage.setItem(COOKIE_KEY,'1');
@@ -511,15 +761,14 @@ document.getElementById('cookieAcceptBtn').addEventListener('click',()=>{
   startApp();
 });
 window.addEventListener('DOMContentLoaded',()=>{
+  loadTheme();
   if(localStorage.getItem(COOKIE_KEY)==='1'){cookieWall.classList.add('gone');startApp();}
 });
 
-document.getElementById('pwChangedOk').addEventListener('click',()=>{
-  document.getElementById('pwChangedPopup').classList.remove('show');
-  document.getElementById('pwChangedPopup').style.display='none';
-});
-
 function startApp(){
+  panicKey=localStorage.getItem(PANIC_KEY_KEY)||'\\';
+  panicUrl=localStorage.getItem(PANIC_URL_KEY)||'https://classroom.google.com';
+  updatePanicPill();
   if(localStorage.getItem(STORAGE_KEY)===CORRECT_PASSWORD){
     enterSite();
   } else {
@@ -528,7 +777,7 @@ function startApp(){
   }
 }
 
-// ══ PASSWORD ══
+/* ═══ PASSWORD ═══ */
 const pwCard=document.getElementById('pwCard');
 const pwInput=document.getElementById('pwInput');
 const pwBtn=document.getElementById('pwBtn');
@@ -548,7 +797,6 @@ function tryPassword(){
   } else if(pwInput.dataset.adminReady==='1'){
     if(val===ADMIN_PASSWORD){
       document.getElementById('passwordOverlay').style.display='none';
-      sendToSheets({type:'visitor',event:'admin_login',time:new Date().toISOString()});
       enterAdmin();
     } else {
       pwError.textContent='Wrong admin password. Reloading…';
@@ -571,7 +819,7 @@ function tryPassword(){
   }
 }
 
-// ══ WELCOME ══
+/* ═══ WELCOME ═══ */
 function showWelcome(cb){
   const wp=document.getElementById('welcomePopup');
   wp.classList.add('show');
@@ -580,9 +828,13 @@ function showWelcome(cb){
 
 function enterSite(){
   logVisitor();
-  sendToSheets({type:'visitor',event:'join',time:new Date().toISOString()});
   document.getElementById('mainContent').style.display='block';
   buildGrid();updateCounts();
+  buildRecentlyRow();
+  // Show request reminder toast after 2s
+  setTimeout(()=>{
+    showToast('If you requested a game, please request again.','red','🔴',7000);
+  },2000);
 }
 
 function enterAdmin(){
@@ -590,33 +842,52 @@ function enterAdmin(){
   renderAdminPanel();
 }
 
-// ══ PANIC KEY ══
+/* ═══ PANIC KEY ═══ */
 document.addEventListener('keydown',e=>{
   if(e.key==='Control'){
     ctrlCount++;
     clearTimeout(ctrlTimer);
     ctrlTimer=setTimeout(()=>{ctrlCount=0;},600);
-    if(ctrlCount>=3){ctrlCount=0;openGame('friends.html','Friends');}
+    if(ctrlCount>=3){ctrlCount=0;openGame('friends.html','Friends','👥');}
     return;
   }
-  if(e.key==='\\'){
-    window.location.href='https://classroom.google.com';
+  const k=e.key;
+  const pk=panicKey;
+  if(k===pk||(pk==='\\'&&k==='\\')){
+    window.location.href=panicUrl;
     return;
   }
-  if(e.key==='Escape'){
+  if(k==='Escape'){
     if(document.getElementById('gameOverlay').classList.contains('active')){closeGame();}
   }
 });
 
-// ══ TABS ══
+/* ═══ SETTINGS MODAL ═══ */
+document.getElementById('settingsBtn').addEventListener('click',()=>{
+  document.getElementById('panicUrlInput').value=panicUrl;
+  document.getElementById('panicKeyInput').value=panicKey==='\\' ? '\\' : panicKey;
+  document.getElementById('settingsModal').classList.add('show');
+});
+document.getElementById('settingsClose').addEventListener('click',()=>document.getElementById('settingsModal').classList.remove('show'));
+document.getElementById('settingsModal').addEventListener('click',e=>{if(e.target===document.getElementById('settingsModal'))document.getElementById('settingsModal').classList.remove('show');});
+
+// Capture key press for panic key
+document.getElementById('panicKeyInput').addEventListener('keydown',e=>{
+  e.preventDefault();
+  panicKey=e.key;
+  document.getElementById('panicKeyInput').value=e.key==='\\' ? '\\' : e.key;
+});
+
+/* ═══ TABS ═══ */
 function switchTab(tab){
   currentTab=tab;
   document.getElementById('tabAll').classList.toggle('active',tab==='all');
   document.getElementById('tabFav').classList.toggle('active',tab==='fav');
+  document.getElementById('tabRecent').classList.toggle('active',tab==='recent');
   buildGrid();updateCounts();
 }
 
-// ══ ADMIN ══
+/* ═══ ADMIN ═══ */
 function renderAdminPanel(){
   const logs=getLogs();
   const today=new Date().toDateString();
@@ -632,7 +903,7 @@ function renderAdminPanel(){
     const tr=document.createElement('tr');
     const dt=new Date(l.time);
     const t=dt.toLocaleDateString()+' '+dt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-    const tags=l.games.length?l.games.map(g=>'<span class="log-game-tag">'+g+'</span>').join(''):'<span style="color:#9aa0a6;font-size:.82rem">None</span>';
+    const tags=l.games.length?l.games.map(g=>'<span class="log-game-tag">'+g+'</span>').join(''):'<span style="color:var(--gc-muted);font-size:.82rem">None</span>';
     tr.innerHTML='<td>Visitor #'+(logs.length-i)+'</td><td><span class="log-time">'+t+'</span></td><td>'+tags+'</td>';
     tbody.appendChild(tr);
   });
@@ -644,7 +915,7 @@ document.getElementById('adminLogoutBtn').addEventListener('click',()=>{
   buildGrid();updateCounts();
 });
 
-// ══ GAMES ══
+/* ═══ GAMES LIST ═══ */
 const GAMES=[
   {name:'Space Clicker',file:'spaceclicker.html',icon:'🚀',tag:'new'},
   {name:'Dino Game',file:'Dino.html',icon:'🦖',tag:'classic'},
@@ -742,7 +1013,7 @@ const GAMES=[
   {name:'Telephone Trouble',file:'clteleponetrouble.html',icon:'📞',tag:'new'},
   {name:'The Dead Seat',file:'clthedeadseat.html',icon:'🪑',tag:'new'},
   {name:'Throw a Potato',file:'clthrowapotato.html',icon:'🥔',tag:'new'},
-  {name:'Trechorous Trails',file:'cltrechoroustrials.html',icon:'⛰️',tag:'new'},
+  {name:'Trecherous Trails',file:'cltrechoroustrials.html',icon:'⛰️',tag:'new'},
   {name:'Tung Tung Sahur Hobby',file:'cltungtungtungsahurobby.html',icon:'🥁',tag:'new'},
   {name:'Two Ball 3D',file:'cltwoball3d.html',icon:'🎱',tag:'new'},
   {name:'Vortex',file:'clvortex.html',icon:'🌀',tag:'new'},
@@ -787,7 +1058,6 @@ const GAMES=[
   {name:'Zombie Rush',file:'clzombierush.html',icon:'🧟',tag:'new'},
   {name:'Zombotron Reboot',file:'clzombotronreboot.html',icon:'🤖',tag:'new'},
   {name:'Zrist',file:'clzrist.html',icon:'⚡',tag:'new'},
-  // NEW BATCH
   {name:'Atari Adventure',file:'clatariadventure.html',icon:'🕹️',tag:'classic'},
   {name:'Cat Mario',file:'clcatmariogood.html',icon:'🐱',tag:'new'},
   {name:'CS6',file:'clcs6.html',icon:'🔫',tag:'new'},
@@ -837,7 +1107,6 @@ const GAMES=[
   {name:'Lundertal Yellow',file:'clundertainleyellow.html',icon:'💛',tag:'new'},
   {name:'Untime',file:'cluntime.html',icon:'⏰',tag:'new'},
   {name:'Upslash',file:'clupslash.html',icon:'⚡',tag:'new'},
-  // v1.8 NEW GAMES
   {name:'Date With Death',file:'cladatewithdeath.html',icon:'💀',tag:'new'},
   {name:'Arsonate',file:'clarsonate.html',icon:'🔥',tag:'new'},
   {name:'Bad Bodyguards',file:'clbadbodyguards.html',icon:'🕵️',tag:'new'},
@@ -851,27 +1120,67 @@ const GAMES=[
   {name:'Wrassling',file:'clwrassling.html',icon:'🤼',tag:'new'},
   {name:'Yandere Simulator',file:'clyanderesimulator.html',icon:'💕',tag:'new'},
   {name:'You vs 100 Skibidi',file:'clyouvs100skibidi.html',icon:'🚽',tag:'new'},
+  // v2.0 NEW GAMES (from screenshot)
+  {name:'Date With Death',file:'cladatewithdeath.html',icon:'💀',tag:'new'},
+  {name:'Asteroids ALT',file:'clasteroidsALT.html',icon:'☄️',tag:'new'},
+  {name:'Cannonballs 3D',file:'clcannonballs3d.html',icon:'💣',tag:'new'},
+  {name:'Clash of Vikings',file:'clclashofvikings.html',icon:'⚔️',tag:'new'},
+  {name:'Dead Seat',file:'cldeadseat.html',icon:'🪑',tag:'new'},
+  {name:'Evil Glitch',file:'clevilglitch.html',icon:'👾',tag:'new'},
+  {name:'Madalin Stunt Cars Multi (1)',file:'clmadalinstuntcarsmultiplayerfixed (1).html',icon:'🚗',tag:'new'},
+  {name:'Mari 0',file:'clmari0.html',icon:'🍄',tag:'classic'},
+  {name:'Mindwave',file:'clmindwave.html',icon:'🧠',tag:'new'},
+  {name:'Mom is Sleeping',file:'clmomimsleeping.html',icon:'😴',tag:'new'},
+  {name:'Wood Worm',file:'clwoodworm.html',icon:'🪱',tag:'new'},
+  {name:'Mids the Sky',file:'clamidstthesky.html',icon:'☁️',tag:'new'},
+  {name:'Clavia Masters Buggy',file:'claviamastersbugggy.html',icon:'🚗',tag:'new'},
+  {name:'Clear Crash 3',file:'clcarcrash3.html',icon:'💥',tag:'new'},
+  {name:'Dadish',file:'cldadish.html',icon:'👨',tag:'new'},
+  {name:'Dungeon and Degenerate Gamblers',file:'cldungeonsanddegenerategamblers.html',icon:'🎰',tag:'new'},
+  {name:'Jail Break',file:'cljailbreakobbbobob.html',icon:'🔐',tag:'new'},
+  {name:'Mega Chess',file:'clmegachess.html',icon:'♟️',tag:'new'},
+  {name:'Minesweeper Plus',file:'clminesweeperplus.html',icon:'💣',tag:'classic'},
+  {name:'Mr Mine',file:'clmrmine.html',icon:'⛏️',tag:'new'},
+  {name:'Clapes vs Helium',file:'clclapesvshelium.html',icon:'🎈',tag:'new'},
+  {name:'Call of Battle',file:'clcallofbattle.html',icon:'🔫',tag:'new'},
+  {name:'Celeste 2',file:'clceleste2.html',icon:'🏔️',tag:'new'},
+  {name:'Dashio',file:'cldashio.html',icon:'💨',tag:'new'},
+  {name:'Dusk Child',file:'clduskchild.html',icon:'🌆',tag:'new'},
+  {name:'Madness 2010',file:'clmadnesss2010.html',icon:'😈',tag:'new'},
+  {name:'Mimic',file:'clmimic.html',icon:'🎭',tag:'new'},
+  {name:'Mini Crossword',file:'clminicrossword.html',icon:'📝',tag:'new'},
+  {name:'My Teardrop',file:'clmyteardrop.html',icon:'💧',tag:'new'},
+  {name:'DTA 6',file:'dta6.html',icon:'🎮',tag:'new'},
 ];
 
+// Deduplicate by file
+const seen=new Set();
+const GAMES_DEDUPED=GAMES.filter(g=>{if(seen.has(g.file))return false;seen.add(g.file);return true;});
+
+/* ═══ BUILD GRID ═══ */
 function buildGrid(){
   const grid=document.getElementById('gameGrid');
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
   const favs=getFavs();
-  let list=GAMES;
-  if(currentTab==='fav') list=GAMES.filter(g=>favs.includes(g.file));
+  const recent=getRecent().map(r=>r.file);
+  let list=GAMES_DEDUPED;
+  if(currentTab==='fav') list=GAMES_DEDUPED.filter(g=>favs.includes(g.file));
+  if(currentTab==='recent') list=GAMES_DEDUPED.filter(g=>recent.includes(g.file)).sort((a,b)=>recent.indexOf(a.file)-recent.indexOf(b.file));
   if(q) list=list.filter(g=>g.name.toLowerCase().includes(q)||g.tag.includes(q));
   grid.innerHTML='';
   if(!list.length){
     const e=document.createElement('div');
     e.className='gc-empty';
-    e.innerHTML=currentTab==='fav'?'<div class="e-icon">⭐</div><p>No favorites yet. Click the ★ on any game card!</p>':'<div class="e-icon">🔍</div><p>No games found.</p>';
+    e.innerHTML=currentTab==='fav'?'<div class="e-icon">⭐</div><p>No favorites yet. Click the ★ on any game card!</p>':currentTab==='recent'?'<div class="e-icon">🕐</div><p>No recently played games yet.</p>':'<div class="e-icon">🔍</div><p>No games found.</p>';
     grid.appendChild(e);updateCounts();return;
   }
   list.forEach((g,i)=>{
     const card=document.createElement('div');
     card.className='game-card';
-    card.style.animationDelay=(i*0.015)+'s';
+    card.style.animationDelay=(i*0.012)+'s';
     const faved=favs.includes(g.file);
+    // Strip 'cl' prefix for display only
+    const displayName=g.name;
     card.innerHTML=
       '<div class="game-card-banner">'+
         '<span>'+g.icon+'</span>'+
@@ -880,7 +1189,7 @@ function buildGrid(){
       '</div>'+
       '<div class="game-card-body">'+
         '<span class="game-card-tag tag-'+g.tag+'">'+(g.tag==='classic'?'Classic':'New')+'</span>'+
-        '<div class="game-name">'+g.name+'</div>'+
+        '<div class="game-name">'+displayName+'</div>'+
       '</div>';
     card.querySelector('.fav-btn').addEventListener('click',ev=>{
       ev.stopPropagation();
@@ -890,7 +1199,7 @@ function buildGrid(){
       updateCounts();
       if(currentTab==='fav')buildGrid();
     });
-    card.addEventListener('click',()=>openGame(g.file,g.name));
+    card.addEventListener('click',()=>openGame(g.file,g.name,g.icon));
     grid.appendChild(card);
   });
   updateCounts();
@@ -899,60 +1208,97 @@ function buildGrid(){
 function updateCounts(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
   const favs=getFavs();
-  let allList=q?GAMES.filter(g=>g.name.toLowerCase().includes(q)):GAMES;
-  let favList=q?GAMES.filter(g=>favs.includes(g.file)&&g.name.toLowerCase().includes(q)):GAMES.filter(g=>favs.includes(g.file));
-  const shown=currentTab==='fav'?favList.length:allList.length;
+  const recent=getRecent();
+  let allList=q?GAMES_DEDUPED.filter(g=>g.name.toLowerCase().includes(q)):GAMES_DEDUPED;
+  let favList=q?GAMES_DEDUPED.filter(g=>favs.includes(g.file)&&g.name.toLowerCase().includes(q)):GAMES_DEDUPED.filter(g=>favs.includes(g.file));
+  const shown=currentTab==='fav'?favList.length:currentTab==='recent'?recent.length:allList.length;
   document.getElementById('gameCount').textContent=shown+' game'+(shown===1?'':'s');
-  document.getElementById('countAll').textContent=GAMES.length;
+  document.getElementById('countAll').textContent=GAMES_DEDUPED.length;
   document.getElementById('countFav').textContent=favs.length;
+  document.getElementById('countRecent').textContent=recent.length;
 }
 
-// Game loader
+/* ═══ RECENTLY PLAYED ROW ═══ */
+function buildRecentlyRow(){
+  const recent=getRecent();
+  const section=document.getElementById('recentlySection');
+  const row=document.getElementById('recentlyRow');
+  if(!recent.length){section.style.display='none';return;}
+  section.style.display='block';
+  row.innerHTML='';
+  recent.forEach(r=>{
+    const chip=document.createElement('div');
+    chip.className='recent-chip';
+    chip.innerHTML='<span class="recent-chip-icon">'+r.icon+'</span><span class="recent-chip-name">'+r.name+'</span>';
+    chip.addEventListener('click',()=>openGame(r.file,r.name,r.icon));
+    row.appendChild(chip);
+  });
+}
+
+/* ═══ GAME LOADER ═══ */
 const gameOverlay=document.getElementById('gameOverlay');
 const gameFrame=document.getElementById('gameFrame');
 const gameTitle=document.getElementById('gameTitle');
 const closeBtn=document.getElementById('closeGameBtn');
-function openGame(file,name){
-  gameFrame.src=file;gameTitle.textContent=name;
-  gameOverlay.classList.add('active');document.body.style.overflow='hidden';
-  logGame(name);sendToSheets({type:'visitor',event:'game',detail:name,time:new Date().toISOString()});
+const gameLoader=document.getElementById('gameLoader');
+const progressWarning=document.getElementById('progressWarning');
+
+function openGame(file,name,icon){
+  gameTitle.textContent=name;
+  document.getElementById('loaderGameName').textContent=name;
+  gameLoader.classList.remove('hidden');
+  gameFrame.src='';
+  gameOverlay.classList.add('active');
+  document.body.style.overflow='hidden';
+  logGame(name);
+  addRecent(file,name,icon||'🎮');
+  buildRecentlyRow();
+  updateCounts();
+  // Show progress warning
+  progressWarning.style.display='block';
+  setTimeout(()=>{progressWarning.style.display='none';},4000);
+  // Load game after 3 seconds
+  setTimeout(()=>{
+    gameFrame.src=file;
+    gameLoader.classList.add('hidden');
+  },3000);
 }
-function closeGame(){gameOverlay.classList.remove('active');gameFrame.src='';document.body.style.overflow='';}
+
+function closeGame(){
+  gameOverlay.classList.remove('active');
+  gameFrame.src='';
+  document.body.style.overflow='';
+  gameLoader.classList.remove('hidden');
+}
 closeBtn.addEventListener('click',closeGame);
 
-// ══ GOOGLE SHEETS ══
-const SHEETS_URL='https://script.google.com/a/macros/lowellschools.com/s/AKfycbyaKbidsFQZQE84gNvlSA56zVtHjeZG6-yyyKZHquEmm_8_uDCuZRIRi6-dnoRu5kDF/exec'; // ← paste your deployment URL here
+/* ═══ RANDOM GAME ═══ */
+document.getElementById('randomGameBtn').addEventListener('click',()=>{
+  const g=GAMES_DEDUPED[Math.floor(Math.random()*GAMES_DEDUPED.length)];
+  showToast('Opening: '+g.name,'','🎲',3000);
+  setTimeout(()=>openGame(g.file,g.name,g.icon),400);
+});
 
-function sendToSheets(payload){
-  if(!SHEETS_URL.includes('YOUR_DEPLOYMENT'))
-    fetch(SHEETS_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
-}
-
-// ══ REQUEST MODAL ══
-const requestModal=document.getElementById('requestModal');
+/* ═══ REQUEST MODAL ═══ */
 document.getElementById('requestBtn').addEventListener('click',()=>window.open('https://forms.gle/agdrF5QMsvUgKMYJ8','_blank'));
-document.getElementById('requestClose').addEventListener('click',()=>requestModal.classList.remove('show'));
-document.getElementById('requestCancel').addEventListener('click',()=>requestModal.classList.remove('show'));
-requestModal.addEventListener('click',e=>{if(e.target===requestModal)requestModal.classList.remove('show');});
-
+document.getElementById('requestClose').addEventListener('click',()=>document.getElementById('requestModal').classList.remove('show'));
+document.getElementById('requestCancel').addEventListener('click',()=>document.getElementById('requestModal').classList.remove('show'));
+document.getElementById('requestModal').addEventListener('click',e=>{if(e.target===document.getElementById('requestModal'))document.getElementById('requestModal').classList.remove('show');});
 document.getElementById('requestSubmit').addEventListener('click',()=>{
   const game=document.getElementById('reqGameName').value.trim();
   if(!game){document.getElementById('reqGameName').focus();return;}
-  const msg=document.getElementById('reqMessage').value.trim();
-  sendToSheets({type:'request',game,message:msg,time:new Date().toISOString()});
   document.getElementById('reqSuccess').style.display='block';
   document.getElementById('reqGameName').value='';
   document.getElementById('reqMessage').value='';
-  setTimeout(()=>{document.getElementById('reqSuccess').style.display='none';requestModal.classList.remove('show');},2000);
+  setTimeout(()=>{document.getElementById('reqSuccess').style.display='none';document.getElementById('requestModal').classList.remove('show');},2000);
 });
 
-// ══ CHANGELOG MODAL ══
-const changelogModal=document.getElementById('changelogModal');
-document.getElementById('changelogBtn').addEventListener('click',()=>changelogModal.classList.add('show'));
-document.getElementById('changelogClose').addEventListener('click',()=>changelogModal.classList.remove('show'));
-changelogModal.addEventListener('click',e=>{if(e.target===changelogModal)changelogModal.classList.remove('show');});
+/* ═══ CHANGELOG MODAL ═══ */
+document.getElementById('changelogBtn').addEventListener('click',()=>document.getElementById('changelogModal').classList.add('show'));
+document.getElementById('changelogClose').addEventListener('click',()=>document.getElementById('changelogModal').classList.remove('show'));
+document.getElementById('changelogModal').addEventListener('click',e=>{if(e.target===document.getElementById('changelogModal'))document.getElementById('changelogModal').classList.remove('show');});
 
-// Search
+/* ═══ SEARCH ═══ */
 document.getElementById('searchInput').addEventListener('input',()=>{buildGrid();});
 </script>
 </body>
