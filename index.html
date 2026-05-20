@@ -94,6 +94,48 @@
       --gc-toast-bg:#ff4fab;--gc-toast-color:#fff;
     }
 
+    /* LEGACY THEME */
+    body.theme-legacy{
+      --gc-green:#fff;--gc-green2:#ccc;--gc-green3:rgba(255,255,255,.08);
+      --gc-bg:#000;--gc-white:#111;--gc-border:#333;
+      --gc-text:#fff;--gc-muted:#888;
+      --gc-header:#111;--gc-header2:#111;
+      --gc-card-banner:linear-gradient(180deg,#1a1a1a,#111);
+      --gc-play-overlay:rgba(255,255,255,.15);
+      --gc-banner-grad:linear-gradient(180deg,#111,#000);
+      --gc-tab-bg:#111;--gc-search-bg:#1a1a1a;
+      --gc-shadow:0 1px 4px rgba(0,0,0,.8);
+      --gc-shadow2:0 2px 8px rgba(0,0,0,.9);
+      --gc-toast-bg:#222;--gc-toast-color:#fff;
+      --transition:0s;
+    }
+    body.theme-legacy *{font-family:Arial,sans-serif !important;border-radius:0 !important;animation:none !important;transition:none !important}
+    body.theme-legacy .game-card:hover{transform:none;box-shadow:inset 0 0 0 2px #fff}
+    body.theme-legacy .gc-header{box-shadow:none;border-bottom:1px solid #333}
+    body.theme-legacy .gc-banner{padding:16px 20px}
+    body.theme-legacy .gc-banner-title{font-size:1.2rem;font-weight:bold}
+    body.theme-legacy .gc-banner::before,body.theme-legacy .gc-banner::after{display:none}
+    body.theme-legacy .banner-action-btn{background:#222;border:1px solid #555;color:#fff}
+    body.theme-legacy .banner-action-btn:hover{background:#333}
+    body.theme-legacy .gc-tab.active{border-bottom-color:#fff;color:#fff}
+    body.theme-legacy .cookie-card,body.theme-legacy .pw-card,body.theme-legacy .modal-card,body.theme-legacy .welcome-card{box-shadow:none;border:1px solid #333}
+    body.theme-legacy .toast{box-shadow:none;border:1px solid #444}
+    body.theme-legacy .game-card{box-shadow:none;border:1px solid #333}
+    body.theme-legacy .play-overlay{background:rgba(255,255,255,.1)}
+    body.theme-legacy .play-btn-circle{background:#fff}
+    body.theme-legacy .play-btn-triangle{border-left-color:#000}
+    body.theme-legacy .gc-search{border-radius:0 !important}
+    body.theme-legacy .streak-badge{background:#222;border-color:#444}
+    body.theme-legacy .settings-hdr-btn{background:#222;border-color:#444}
+    body.theme-legacy .gc-hdr-btn{background:#222;border-color:#444}
+    body.theme-legacy .gc-discord-btn{background:#222;border-color:#444}
+    body.theme-legacy .gc-badge{background:#222;border:1px solid #444}
+    body.theme-legacy .recent-chip{box-shadow:none}
+    body.theme-legacy #gameLoader{background:#000}
+    body.theme-legacy .loader-icon-ring-spin,body.theme-legacy .loader-icon-ring-spin2{display:none}
+    body.theme-legacy .loader-bar{background:#fff}
+    body.theme-legacy .loader-dot{background:#fff}
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{min-height:100%;font-family:'Roboto',sans-serif;color:var(--gc-text);background:var(--gc-bg);overflow-x:hidden;transition:background var(--transition),color var(--transition)}
 
@@ -241,12 +283,28 @@
     .game-close-btn:hover{background:rgba(255,255,255,.15)}
     #gameFrame{flex:1;width:100%;border:none;display:block}
 
-    /* GAME LOADING SCREEN */
-    #gameLoader{position:absolute;inset:0;top:50px;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:10;transition:opacity .5s ease}
-    #gameLoader.hidden{opacity:0;pointer-events:none}
-    .loader-spinner{width:52px;height:52px;border:4px solid rgba(255,255,255,.1);border-top-color:var(--gc-green);border-radius:50%;animation:spin .8s linear infinite}
-    .loader-text{color:rgba(255,255,255,.7);font-family:'Google Sans',sans-serif;font-size:.95rem;letter-spacing:.02em}
-    .loader-game-name{color:#fff;font-family:'Google Sans',sans-serif;font-size:1.1rem;font-weight:700}
+    /* GAME LOADING SCREEN — FANCY */
+    @keyframes loaderBar{0%{width:0;opacity:1}80%{width:90%;opacity:1}100%{width:100%;opacity:0}}
+    @keyframes loaderPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.08);opacity:1}}
+    @keyframes loaderDot{0%,80%,100%{transform:scale(0);opacity:0}40%{transform:scale(1);opacity:1}}
+    @keyframes loaderFadeOut{to{opacity:0;pointer-events:none}}
+    #gameLoader{position:absolute;inset:0;top:50px;background:linear-gradient(160deg,#0d0d12,#111116);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;z-index:10;transition:opacity .6s ease}
+    #gameLoader.hidden{animation:loaderFadeOut .6s ease forwards}
+    .loader-inner{display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;padding:0 24px}
+    .loader-icon-wrap{position:relative;width:88px;height:88px;display:flex;align-items:center;justify-content:center}
+    .loader-icon-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.06)}
+    .loader-icon-ring-spin{position:absolute;inset:-4px;border-radius:50%;border:3px solid transparent;border-top-color:var(--gc-green);animation:spin .9s linear infinite}
+    .loader-icon-ring-spin2{position:absolute;inset:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(255,255,255,.15);animation:spin 1.8s linear infinite reverse}
+    .loader-emoji{font-size:2.6rem;animation:loaderPulse 2s ease infinite}
+    .loader-texts{display:flex;flex-direction:column;gap:6px}
+    .loader-game-name{color:#fff;font-family:'Google Sans',sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:.01em}
+    .loader-sub{color:rgba(255,255,255,.4);font-family:'Roboto',sans-serif;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+    .loader-bar-wrap{width:220px;height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+    .loader-bar{height:100%;background:var(--gc-green);border-radius:2px;animation:loaderBar 2.8s cubic-bezier(.4,0,.2,1) forwards}
+    .loader-dots{display:flex;gap:6px;align-items:center}
+    .loader-dot{width:7px;height:7px;border-radius:50%;background:var(--gc-green);animation:loaderDot 1.2s ease infinite}
+    .loader-dot:nth-child(2){animation-delay:.2s}
+    .loader-dot:nth-child(3){animation-delay:.4s}
 
     /* PROGRESS SAVE WARNING */
     #progressWarning{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(217,48,37,.95);color:#fff;padding:12px 24px;border-radius:12px;font-family:'Google Sans',sans-serif;font-size:.88rem;font-weight:600;z-index:9999;display:none;animation:gcPop .3s ease;box-shadow:0 4px 20px rgba(0,0,0,.4);text-align:center;max-width:380px;white-space:nowrap}
@@ -338,7 +396,15 @@
     .gc-footer{text-align:center;color:var(--gc-muted);font-size:.82rem;padding-bottom:8px}
     .hidden{display:none !important}
 
-    /* NEON SPECIAL EFFECTS */
+    /* STREAK COUNTER */
+    .streak-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Google Sans',sans-serif;font-size:.8rem;font-weight:700;white-space:nowrap;cursor:default;user-select:none}
+    .streak-fire{font-size:.95rem}
+    @keyframes streakPop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+    .streak-badge.pop{animation:streakPop .4s cubic-bezier(.34,1.56,.64,1)}
+
+    /* FULLSCREEN BUTTON */
+    .game-fullscreen-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-family:'Roboto',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:background var(--transition);white-space:nowrap}
+    .game-fullscreen-btn:hover{background:rgba(255,255,255,.15)}
     body.theme-neon .game-card:hover{box-shadow:0 0 20px rgba(0,255,136,.3),0 8px 24px rgba(0,0,0,.6)}
     body.theme-neon .gc-header-title{animation:neonFlicker 8s infinite}
     body.theme-neon .gc-banner-title{text-shadow:0 0 20px rgba(0,255,136,.6)}
@@ -542,6 +608,11 @@
           <div class="theme-btn-swatch" style="background:linear-gradient(135deg,#ff4fab,#e040a0)">🍭</div>
           <div class="theme-btn-label">Candy</div>
         </button>
+        <button class="theme-btn" data-theme="legacy" onclick="setTheme('legacy',this)">
+          <div class="theme-btn-check">✓</div>
+          <div class="theme-btn-swatch" style="background:#000;border:1px solid #444;color:#fff;font-family:Arial,sans-serif;font-size:.65rem;display:flex;align-items:center;justify-content:center;font-weight:bold">BLK</div>
+          <div class="theme-btn-label">Legacy</div>
+        </button>
       </div>
     </div>
 
@@ -599,12 +670,28 @@
 <div id="gameOverlay">
   <div class="game-topbar">
     <span class="game-topbar-title" id="gameTitle">Game</span>
+    <button class="game-fullscreen-btn" id="fullscreenBtn">⛶ Fullscreen</button>
     <button class="game-close-btn" id="closeGameBtn">✕ Close</button>
   </div>
   <div id="gameLoader">
-    <div class="loader-game-name" id="loaderGameName"></div>
-    <div class="loader-spinner"></div>
-    <div class="loader-text">Loading game…</div>
+    <div class="loader-inner">
+      <div class="loader-icon-wrap">
+        <div class="loader-icon-ring"></div>
+        <div class="loader-icon-ring-spin"></div>
+        <div class="loader-icon-ring-spin2"></div>
+        <span class="loader-emoji" id="loaderEmoji">🎮</span>
+      </div>
+      <div class="loader-texts">
+        <div class="loader-game-name" id="loaderGameName">Loading…</div>
+        <div class="loader-sub">Get ready to play</div>
+      </div>
+      <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+      <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
   </div>
   <iframe id="gameFrame" src="" allowfullscreen></iframe>
 </div>
@@ -625,6 +712,7 @@
         Discord
       </a>
       <span class="gc-badge">lowellmiddleschool</span>
+      <span class="streak-badge" id="streakBadge" title="Daily visit streak"><span class="streak-fire">🔥</span><span id="streakCount">0</span> day streak</span>
       <button class="gc-hdr-btn" id="requestBtn">📩 Request</button>
       <button class="gc-hdr-btn" id="changelogBtn">📋 Updates</button>
       <button class="settings-hdr-btn" id="settingsBtn" title="Settings">⚙️</button>
@@ -635,7 +723,7 @@
   <div class="gc-banner">
     <div class="gc-banner-inner">
       <div class="gc-banner-left">
-        <div class="gc-banner-title">🎮 Game Hub v2.0</div>
+        <div class="gc-banner-title">🎮 Totally Classroom</div>
         <div class="gc-banner-sub">Pick a game and start playing. Press <strong id="panicKeyLabel">\</strong> anytime to hide.</div>
       </div>
       <div class="gc-banner-actions">
@@ -690,7 +778,29 @@ let ctrlCount=0,ctrlTimer=null;
 let panicKey=localStorage.getItem(PANIC_KEY_KEY)||'\\';
 let panicUrl=localStorage.getItem(PANIC_URL_KEY)||'https://classroom.google.com';
 
-/* ═══ STORAGE HELPERS ═══ */
+const STREAK_KEY='tc_streak';
+const STREAK_DATE_KEY='tc_streak_date';
+
+/* ═══ STREAK SYSTEM ═══ */
+function getStreak(){return parseInt(localStorage.getItem(STREAK_KEY)||'0');}
+function updateStreak(){
+  const today=new Date().toDateString();
+  const last=localStorage.getItem(STREAK_DATE_KEY);
+  let streak=getStreak();
+  if(last===today){/* already counted today */}
+  else if(last===new Date(Date.now()-86400000).toDateString()){
+    streak++;localStorage.setItem(STREAK_KEY,streak);localStorage.setItem(STREAK_DATE_KEY,today);
+    if(streak>1)setTimeout(()=>showToast('🔥 '+streak+' day streak! Keep it up!','','🔥',4000),1500);
+  } else {
+    streak=1;localStorage.setItem(STREAK_KEY,1);localStorage.setItem(STREAK_DATE_KEY,today);
+  }
+  const badge=document.getElementById('streakBadge');
+  const countEl=document.getElementById('streakCount');
+  if(countEl)countEl.textContent=streak;
+  if(streak>=3&&badge){badge.style.background='rgba(255,180,0,.25)';badge.style.borderColor='rgba(255,180,0,.4)';}
+  if(streak>=7&&badge){badge.style.background='rgba(255,100,0,.3)';badge.style.borderColor='rgba(255,100,0,.5)';}
+  badge&&badge.classList.add('pop');setTimeout(()=>badge&&badge.classList.remove('pop'),500);
+}
 function getLogs(){try{return JSON.parse(localStorage.getItem(LOGS_KEY))||[];}catch{return[];}}
 function saveLogs(l){localStorage.setItem(LOGS_KEY,JSON.stringify(l));}
 function getFavs(){try{return JSON.parse(localStorage.getItem(FAV_KEY))||[];}catch{return[];}}
@@ -828,6 +938,7 @@ function showWelcome(cb){
 
 function enterSite(){
   logVisitor();
+  updateStreak();
   document.getElementById('mainContent').style.display='block';
   buildGrid();updateCounts();
   buildRecentlyRow();
@@ -1151,9 +1262,16 @@ const GAMES=[
   {name:'Mini Crossword',file:'clminicrossword.html',icon:'📝',tag:'new'},
   {name:'My Teardrop',file:'clmyteardrop.html',icon:'💧',tag:'new'},
   {name:'DTA 6',file:'dta6.html',icon:'🎮',tag:'new'},
+  // v2.0 patch — from screenshots
+  {name:'Baby Sniper Vietnam',file:'clbabysniperinvietnam.html',icon:'🎯',tag:'new'},
+  {name:'Baseball Bros',file:'clbaseballbros.html',icon:'⚾',tag:'new'},
+  {name:'Diddy Kong Racing',file:'cldiddykong-racing.html',icon:'🏎️',tag:'classic'},
+  {name:'FNAF 2',file:'clFNAF2.html',icon:'🐻',tag:'new'},
+  {name:'FNAF 3',file:'clFNAF3.html',icon:'🐻',tag:'new'},
+  {name:'FNAF 4 Halloween',file:'clfnaf4halloween.html',icon:'🎃',tag:'new'},
+  {name:'Jumbo Mario',file:'cljumbomario.html',icon:'🍄',tag:'classic'},
+  {name:'Time Shooter 3',file:'cltimeshooter3.html',icon:'🎯',tag:'new'},
 ];
-
-// Deduplicate by file
 const seen=new Set();
 const GAMES_DEDUPED=GAMES.filter(g=>{if(seen.has(g.file))return false;seen.add(g.file);return true;});
 
@@ -1246,6 +1364,10 @@ const progressWarning=document.getElementById('progressWarning');
 function openGame(file,name,icon){
   gameTitle.textContent=name;
   document.getElementById('loaderGameName').textContent=name;
+  document.getElementById('loaderEmoji').textContent=icon||'🎮';
+  // Restart bar animation
+  const bar=document.getElementById('loaderBar');
+  bar.style.animation='none';void bar.offsetWidth;bar.style.animation='loaderBar 2.8s cubic-bezier(.4,0,.2,1) forwards';
   gameLoader.classList.remove('hidden');
   gameFrame.src='';
   gameOverlay.classList.add('active');
@@ -1254,10 +1376,8 @@ function openGame(file,name,icon){
   addRecent(file,name,icon||'🎮');
   buildRecentlyRow();
   updateCounts();
-  // Show progress warning
   progressWarning.style.display='block';
   setTimeout(()=>{progressWarning.style.display='none';},4000);
-  // Load game after 3 seconds
   setTimeout(()=>{
     gameFrame.src=file;
     gameLoader.classList.add('hidden');
@@ -1271,6 +1391,14 @@ function closeGame(){
   gameLoader.classList.remove('hidden');
 }
 closeBtn.addEventListener('click',closeGame);
+
+// Fullscreen
+document.getElementById('fullscreenBtn').addEventListener('click',()=>{
+  const el=document.getElementById('gameFrame');
+  if(el.requestFullscreen)el.requestFullscreen();
+  else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+  else if(el.mozRequestFullScreen)el.mozRequestFullScreen();
+});
 
 /* ═══ RANDOM GAME ═══ */
 document.getElementById('randomGameBtn').addEventListener('click',()=>{
